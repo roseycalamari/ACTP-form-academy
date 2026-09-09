@@ -44,11 +44,18 @@
     <div class="stats">
       <div class="stat"><b id="statTotal">0</b><span>Fichas</span></div>
       <div class="stat"><b id="statKids">0</b><span>Crianças</span></div>
-      <div class="stat"><b id="statReady">0</b><span>Horários com 4+</span></div>
+      <div class="stat"><b id="statReady">0</b><span>Turmas 4+ (mesma bola)</span></div>
     </div>
 
-    <h2>Procura por horário</h2>
-    <p class="hint">Quantas famílias marcaram cada combinação. A preto (4+) está pronto a fechar turma.</p>
+    <h2>Procura por horário e bola</h2>
+    <p class="hint">Em cada célula: alunos por cor de bola nesse dia e hora. Uma turma fecha quando a mesma bola chega a 4 nesse horário.</p>
+    <div class="ball-legend" aria-hidden="true">
+      <span><i class="ball-dot red"></i> Red</span>
+      <span><i class="ball-dot orange"></i> Orange</span>
+      <span><i class="ball-dot green"></i> Green</span>
+      <span><i class="ball-dot yellow"></i> Yellow</span>
+      <span><i class="ball-dot unknown"></i> Por confirmar</span>
+    </div>
     <div class="grid-wrap">
       <table class="grid heat" id="heatTable">
         <thead>
@@ -60,6 +67,11 @@
         <tbody></tbody>
       </table>
     </div>
+
+    <h2>Turmas por bola</h2>
+    <p class="hint">Cada linha é uma possível turma: cor da bola + dia + hora + quantas pessoas.</p>
+    <div id="ballGraph"></div>
+    <p class="empty is-hidden" id="graphEmpty">Ainda não há combinações bola + horário.</p>
 
     <div class="toolbar">
       <a id="csvLink" href="/api/export.csv">Exportar CSV</a>

@@ -74,12 +74,36 @@
     return t(day + "Long") + " · " + (time ? time.label : timeId);
   }
 
+  function ballLabel() {
+    const level = radioVal("tennisLevel");
+    if (!level) return "";
+    const key = {
+      red: "ballRed",
+      orange: "ballOrange",
+      green: "ballGreen",
+      yellow: "ballYellow",
+      unknown: "ballUnknown"
+    }[level];
+    return key ? t(key) : "";
+  }
+
+  function paintGridBall() {
+    const table = document.getElementById("slotGrid");
+    if (!table) return;
+    table.className = "grid";
+    const level = radioVal("tennisLevel");
+    if (level && sportValue() !== "padel") table.classList.add("ball-" + level);
+  }
+
   function refreshSummary() {
+    paintGridBall();
     const slots = selectedSlots();
+    const ball = sportValue() === "padel" ? "" : ballLabel();
+    const lines = slots.map(function (value) {
+      return ball ? ball + " · " + slotLabel(value) : slotLabel(value);
+    });
     summaryEl.textContent = slots.length
-      ? t("selectedCount").replace("{n}", String(slots.length)) +
-        " — " +
-        slots.map(slotLabel).join("; ")
+      ? t("selectedCount").replace("{n}", String(slots.length)) + " — " + lines.join("; ")
       : t("selectedNone");
   }
 
@@ -115,6 +139,7 @@
     if (sport === "tennis") {
       form.querySelectorAll('input[name="padelLevel"]').forEach(function (el) { el.checked = false; });
     }
+    refreshSummary();
   }
 
   function showError(msg) {
@@ -252,6 +277,7 @@
       refreshChoiceSelects();
       refreshSummary();
     }
+    if (e.target.name === "tennisLevel") refreshSummary();
     if (e.target.name === "sport") toggleLevels();
   });
 

@@ -12,11 +12,11 @@
     "2": "2× / semana",
     "3": "3× / semana",
     flexible: "Flexível",
-    red: "Red",
-    orange: "Orange",
-    green: "Green",
-    yellow: "Yellow",
-    unknown: "Não sei",
+    red: "Bola red",
+    orange: "Bola orange",
+    green: "Bola green",
+    yellow: "Bola yellow",
+    unknown: "Bola por confirmar",
     beginner: "Iniciante",
     intermediate: "Intermédio",
     teens: "Adolescentes",
@@ -24,12 +24,31 @@
     different: "Horários diferentes"
   };
 
+  const BALLS = ["red", "orange", "green", "yellow", "unknown"];
+  const DAY_LONG = { mon: "Segunda", tue: "Terça", wed: "Quarta", thu: "Quinta", fri: "Sexta" };
+  const DAY_SHORT = { mon: "Seg", tue: "Ter", wed: "Qua", thu: "Qui", fri: "Sex" };
+
   function slotLabel(value) {
     if (!value) return "—";
     const parts = String(value).split("-");
-    const dayMap = { mon: "Seg", tue: "Ter", wed: "Qua", thu: "Qui", fri: "Sex" };
     const time = SLOTS.times.find(function (item) { return item.id === parts[1]; });
-    return (dayMap[parts[0]] || parts[0]) + " · " + (time ? time.label : parts[1]);
+    return (DAY_SHORT[parts[0]] || parts[0]) + " · " + (time ? time.label : parts[1]);
+  }
+
+  function slotLong(value) {
+    if (!value) return "—";
+    const parts = String(value).split("-");
+    const time = SLOTS.times.find(function (item) { return item.id === parts[1]; });
+    return (DAY_LONG[parts[0]] || parts[0]) + " · " + (time ? time.label : parts[1]);
+  }
+
+  function peopleInRow(row) {
+    return 1 + (row.child2Name && row.child2Schedule !== "different" ? 1 : 0);
+  }
+
+  function tennisBall(row) {
+    if (row.sport === "padel") return "";
+    return row.tennisLevel || "unknown";
   }
 
   async function api(url, opts) {
@@ -56,19 +75,31 @@
     }, 0);
     document.getElementById("statKids").textContent = String(kids);
 
-    const counts = {};
+    const byBall = {};
     SLOTS.times.forEach(function (time) {
       SLOTS.days.forEach(function (day) {
-        counts[day + "-" + time.id] = 0;
+        const key = day + "-" + time.id;
+        byBall[key] = { red: 0, orange: 0, green: 0, yellow: 0, unknown: 0 };
       });
     });
+    const padelBySlot = {};
     items.forEach(function (row) {
-      (row.slots || []).forEach(function (slot) {
-        if (counts[slot] != null) counts[slot] += 1;
-      });
+      const n = peopleInRow(row);
+      const ball = tennisBall(row);
+      if (ball) {
+        (row.slots || []).forEach(function (slot) {
+          if (byBall[slot]) byBall[slot][ball] += n;
+        });
+      }
+      if (row.sport === "padel" || row.sport === "both") {
+        (row.slots || []).forEach(function (slot) {
+          padelBySlot[slot] = (padelBySlot[slot] || 0) + n;
+        });
+      }
     });
 
     let ready = 0;
+    const graphRows = [];
     const tbody = document.querySelector("#heatTable tbody");
     tbody.innerHTML = "";
     SLOTS.times.forEach(function (time) {
@@ -76,16 +107,61 @@
       tr.innerHTML = '<td class="t">' + time.label + "</td>";
       SLOTS.days.forEach(function (day) {
         const key = day + "-" + time.id;
-        const n = counts[key];
-        if (n >= 4) ready += 1;
+        const cell = byBall[key];
+        const total = BALLS.reduce(function (sum, ball) { return sum + cell[ball]; }, 0);
+        BALLS.forEach(function (ball) {
+          if (cell[ball] >= 4) ready += 1;
+          if (cell[ball] > 0) {
+            graphRows.push({ ball: ball, slot: key, count: cell[ball] });
+          }
+        });
         const td = document.createElement("td");
-        td.className = "heat-cell " + heatClass(n);
-        td.textContent = n ? String(n) : "·";
+        td.className = "heat-cell " + heatClass(total);
+        if (!total) {
+          td.textContent = "·";
+        } else {
+          td.innerHTML = BALLS.filter(function (ball) { return cell[ball] > 0; }).map(function (ball) {
+            return '<span class="heat-chip ' + ball + '"><i class="ball-dot ' + ball + '"></i>' + cell[ball] + "</span>";
+          }).join("");
+        }
         tr.appendChild(td);
       });
       tbody.appendChild(tr);
     });
     document.getElementById("statReady").textContent = String(ready);
+
+    const order = { red: 0, orange: 1, green: 2, yellow: 3, unknown: 4 };
+    const dayOrder = { mon: 0, tue: 1, wed: 2, thu: 3, fri: 4 };
+    Object.keys(padelBySlot).forEach(function (slot) {
+      if (padelBySlot[slot] > 0) graphRows.push({ ball: "padel", slot: slot, count: padelBySlot[slot] });
+    });
+    order.padel = 5;
+    labels.padel = labels.padel || "Padel";
+    graphRows.sort(function (a, b) {
+      if (order[a.ball] !== order[b.ball]) return (order[a.ball] || 9) - (order[b.ball] || 9);
+      const ad = a.slot.split("-")[0];
+      const bd = b.slot.split("-")[0];
+      if (dayOrder[ad] !== dayOrder[bd]) return dayOrder[ad] - dayOrder[bd];
+      return a.slot.localeCompare(b.slot);
+    });
+    const maxCount = graphRows.reduce(function (m, row) { return Math.max(m, row.count); }, 1);
+    const graph = document.getElementById("ballGraph");
+    const graphEmpty = document.getElementById("graphEmpty");
+    graph.innerHTML = "";
+    graphEmpty.classList.toggle("is-hidden", graphRows.length > 0);
+    graphRows.forEach(function (row) {
+      const line = document.createElement("div");
+      line.className = "graph-row" + (row.count >= 4 ? " ready" : "");
+      const pct = Math.max(8, Math.round((row.count / maxCount) * 100));
+      const people = row.count === 1 ? "1 pessoa" : row.count + " pessoas";
+      line.innerHTML =
+        '<div class="graph-label"><i class="ball-dot ' + row.ball + '"></i>' +
+        escapeHtml(labels[row.ball] || row.ball) + " · " + escapeHtml(slotLong(row.slot)) +
+        "</div>" +
+        '<div class="graph-track"><div class="graph-bar" style="width:' + pct + '%"></div></div>' +
+        '<div class="graph-n">' + people + (row.count >= 4 ? ' <b>Pronto</b>' : "") + "</div>";
+      graph.appendChild(line);
+    });
 
     const list = document.getElementById("list");
     const empty = document.getElementById("empty");
@@ -101,7 +177,7 @@
         '<button type="button" class="sub-head">' +
           "<div><strong>" + escapeHtml(row.studentName || "—") + escapeHtml(child2) + "</strong>" +
           "<div><span>" + escapeHtml(row.parentName || "") + " · " + escapeHtml(row.phone || "") + "</span></div></div>" +
-          "<span>" + escapeHtml((labels[row.sport] || row.sport || "") + " · " + when) + "</span>" +
+          "<span>" + escapeHtml((labels[row.sport] || row.sport || "") + (row.tennisLevel && row.sport !== "padel" ? " · " + (labels[row.tennisLevel] || row.tennisLevel) : "") + " · " + when) + "</span>" +
         "</button>" +
         '<div class="sub-body"><dl>' +
           field("Idade", row.age) +
