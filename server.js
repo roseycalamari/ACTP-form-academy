@@ -20,7 +20,7 @@ const DATA_DIR = path.join(ROOT, "data");
 const DATA_FILE = path.join(DATA_DIR, "submissions.json");
 const CSV_FILE = path.join(DATA_DIR, "submissions.csv");
 const PORT = Number(process.env.PORT || 3456);
-const ADMIN_PASSWORD = process.env.ACTP_ADMIN_PASSWORD || "pinecliffs";
+const ADMIN_PASSWORD = process.env.ACTP_ADMIN_PASSWORD || "adminruben";
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -222,6 +222,6 @@ ensureStore();
 server.listen(PORT, function () {
   console.log("ACTP availability form:  http://localhost:" + PORT);
   console.log("Team inbox:              http://localhost:" + PORT + "/admin");
-  console.log("Admin password:          " + (process.env.ACTP_ADMIN_PASSWORD ? "(from ACTP_ADMIN_PASSWORD)" : "pinecliffs"));
+  console.log("Admin password:          " + (process.env.ACTP_ADMIN_PASSWORD ? "(from ACTP_ADMIN_PASSWORD)" : "adminruben"));
   console.log("Saved to:                " + DATA_FILE);
 });
