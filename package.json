@@ -3,6 +3,6 @@
   "private": true,
   "description": "Bilingual parent availability form for Annabel Croft Tennis & Padel, Pine Cliffs.",
   "scripts": {
-    "start": "node server.js"
+    "dev": "node server.js"
   }
 }

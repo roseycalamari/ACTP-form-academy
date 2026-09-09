@@ -3,6 +3,7 @@
  * ACTP parent availability — local inbox.
  *
  *   node server.js
+ *   npm run dev
  *   open http://localhost:3456
  *   admin: http://localhost:3456/admin
  *
@@ -40,8 +41,12 @@ const CSV_HEADERS = [
 ];
 
 function ensureStore() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]\n", "utf8");
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]\n", "utf8");
+  } catch (e) {
+    /* read-only hosts (Vercel) cannot write here — API routes use KV instead */
+  }
 }
 
 function readAll() {

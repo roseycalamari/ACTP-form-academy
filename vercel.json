@@ -1,4 +1,5 @@
 {
+  "framework": null,
   "rewrites": [
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/api/export.csv", "destination": "/api/export" }
