@@ -130,13 +130,29 @@
     });
     document.getElementById("statReady").textContent = String(ready);
 
-    const order = { red: 0, orange: 1, green: 2, yellow: 3, unknown: 4 };
+    const namesByKey = {};
+    items.forEach(function (row) {
+      const ball = tennisBall(row);
+      const names = [row.studentName].concat(
+        row.child2Name && row.child2Schedule !== "different" ? [row.child2Name] : []
+      ).filter(Boolean);
+      (row.slots || []).forEach(function (slot) {
+        if (ball) {
+          const key = ball + "|" + slot;
+          namesByKey[key] = (namesByKey[key] || []).concat(names);
+        }
+        if (row.sport === "padel" || row.sport === "both") {
+          const key = "padel|" + slot;
+          namesByKey[key] = (namesByKey[key] || []).concat(names);
+        }
+      });
+    });
+
+    const order = { red: 0, orange: 1, green: 2, yellow: 3, unknown: 4, padel: 5 };
     const dayOrder = { mon: 0, tue: 1, wed: 2, thu: 3, fri: 4 };
     Object.keys(padelBySlot).forEach(function (slot) {
       if (padelBySlot[slot] > 0) graphRows.push({ ball: "padel", slot: slot, count: padelBySlot[slot] });
     });
-    order.padel = 5;
-    labels.padel = labels.padel || "Padel";
     graphRows.sort(function (a, b) {
       if (order[a.ball] !== order[b.ball]) return (order[a.ball] || 9) - (order[b.ball] || 9);
       const ad = a.slot.split("-")[0];
@@ -144,23 +160,50 @@
       if (dayOrder[ad] !== dayOrder[bd]) return dayOrder[ad] - dayOrder[bd];
       return a.slot.localeCompare(b.slot);
     });
-    const maxCount = graphRows.reduce(function (m, row) { return Math.max(m, row.count); }, 1);
+
     const graph = document.getElementById("ballGraph");
     const graphEmpty = document.getElementById("graphEmpty");
     graph.innerHTML = "";
     graphEmpty.classList.toggle("is-hidden", graphRows.length > 0);
+
+    const groups = [];
     graphRows.forEach(function (row) {
-      const line = document.createElement("div");
-      line.className = "graph-row" + (row.count >= 4 ? " ready" : "");
-      const pct = Math.max(8, Math.round((row.count / maxCount) * 100));
-      const people = row.count === 1 ? "1 pessoa" : row.count + " pessoas";
-      line.innerHTML =
-        '<div class="graph-label"><i class="ball-dot ' + row.ball + '"></i>' +
-        escapeHtml(labels[row.ball] || row.ball) + " · " + escapeHtml(slotLong(row.slot)) +
-        "</div>" +
-        '<div class="graph-track"><div class="graph-bar" style="width:' + pct + '%"></div></div>' +
-        '<div class="graph-n">' + people + (row.count >= 4 ? ' <b>Pronto</b>' : "") + "</div>";
-      graph.appendChild(line);
+      const last = groups[groups.length - 1];
+      if (!last || last.ball !== row.ball) groups.push({ ball: row.ball, rows: [row] });
+      else last.rows.push(row);
+    });
+
+    groups.forEach(function (group) {
+      const box = document.createElement("section");
+      box.className = "turma-group " + group.ball;
+      const readyCount = group.rows.filter(function (row) { return row.count >= 4; }).length;
+      box.innerHTML =
+        '<header class="turma-head">' +
+          '<span class="ball-dot ' + group.ball + '"></span>' +
+          "<div><strong>" + escapeHtml(labels[group.ball] || group.ball) + "</strong>" +
+          "<span>" + group.rows.length + (group.rows.length === 1 ? " horário" : " horários") +
+          (readyCount ? " · " + readyCount + " pronto" + (readyCount > 1 ? "s" : "") : "") +
+          "</span></div>" +
+        "</header>";
+      group.rows.forEach(function (row) {
+        const parts = row.slot.split("-");
+        const time = SLOTS.times.find(function (item) { return item.id === parts[1]; });
+        const names = namesByKey[row.ball + "|" + row.slot] || [];
+        const line = document.createElement("div");
+        line.className = "turma-line" + (row.count >= 4 ? " ready" : "");
+        const pips = [0, 1, 2, 3].map(function (i) {
+          return '<i class="pip' + (i < Math.min(row.count, 4) ? " on" : "") + '"></i>';
+        }).join("");
+        line.innerHTML =
+          '<div class="turma-when"><b>' + escapeHtml(DAY_LONG[parts[0]] || parts[0]) + "</b>" +
+          "<span>" + escapeHtml(time ? time.label : parts[1]) + "</span></div>" +
+          '<div class="turma-pips" aria-hidden="true">' + pips + "</div>" +
+          '<div class="turma-count"><b>' + row.count + "</b><span>/ 4</span></div>" +
+          (names.length ? '<p class="turma-names">' + escapeHtml(names.join(" · ")) + "</p>" : "") +
+          (row.count >= 4 ? '<span class="turma-ready">Pronto a fechar</span>' : "");
+        box.appendChild(line);
+      });
+      graph.appendChild(box);
     });
 
     const list = document.getElementById("list");
@@ -174,11 +217,14 @@
       const when = row.submittedAt ? new Date(row.submittedAt).toLocaleString("pt-PT") : "";
       const child2 = row.child2Name ? " + " + row.child2Name : "";
       card.innerHTML =
-        '<button type="button" class="sub-head">' +
-          "<div><strong>" + escapeHtml(row.studentName || "—") + escapeHtml(child2) + "</strong>" +
-          "<div><span>" + escapeHtml(row.parentName || "") + " · " + escapeHtml(row.phone || "") + "</span></div></div>" +
-          "<span>" + escapeHtml((labels[row.sport] || row.sport || "") + (row.tennisLevel && row.sport !== "padel" ? " · " + (labels[row.tennisLevel] || row.tennisLevel) : "") + " · " + when) + "</span>" +
-        "</button>" +
+        '<div class="sub-top">' +
+          '<button type="button" class="sub-head">' +
+            "<div><strong>" + escapeHtml(row.studentName || "—") + escapeHtml(child2) + "</strong>" +
+            "<div><span>" + escapeHtml(row.parentName || "") + " · " + escapeHtml(row.phone || "") + "</span></div></div>" +
+            "<span>" + escapeHtml((labels[row.sport] || row.sport || "") + (row.tennisLevel && row.sport !== "padel" ? " · " + (labels[row.tennisLevel] || row.tennisLevel) : "") + " · " + when) + "</span>" +
+          "</button>" +
+          '<button type="button" class="sub-del" data-id="' + escapeHtml(row.id || "") + '">Apagar</button>' +
+        "</div>" +
         '<div class="sub-body"><dl>' +
           field("Idade", row.age) +
           field("Email", row.email) +
@@ -196,6 +242,11 @@
         "</dl></div>";
       card.querySelector(".sub-head").addEventListener("click", function () {
         card.classList.toggle("open");
+      });
+      card.querySelector(".sub-del").addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        removeFicha(row);
       });
       list.appendChild(card);
     });
@@ -221,6 +272,23 @@
     const data = await api("/api/submissions");
     if (storeBanner) storeBanner.classList.remove("show");
     render(data);
+  }
+
+  async function removeFicha(row) {
+    const name = row.studentName || "esta ficha";
+    if (!window.confirm("Apagar a ficha de " + name + "? Serve para testes. Isto não se recupera.")) return;
+    try {
+      await api("/api/submissions", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: row.id })
+      });
+      await load();
+    } catch (err) {
+      window.alert(err && err.message === "store"
+        ? "Ainda não há armazenamento no Vercel. As fichas de teste só se apagam depois de ligar o Redis."
+        : "Não foi possível apagar esta ficha.");
+    }
   }
 
   function enterAdmin() {

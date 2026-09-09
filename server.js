@@ -199,6 +199,18 @@ const server = http.createServer(async function (req, res) {
       return sendJson(res, 200, { ok: true, submissions: readAll() });
     }
 
+    if (req.method === "DELETE" && p === "/api/submissions") {
+      if (!isAdmin(req)) return sendJson(res, 401, { ok: false });
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const id = String(body.id || "");
+      if (!/^actp-[a-z0-9-]{4,60}$/i.test(id)) return sendJson(res, 400, { ok: false });
+      const items = readAll();
+      const next = items.filter(function (row) { return row.id !== id; });
+      if (next.length === items.length) return sendJson(res, 404, { ok: false });
+      writeAll(next);
+      return sendJson(res, 200, { ok: true });
+    }
+
     if (req.method === "GET" && p === "/api/export.csv") {
       if (!isAdmin(req)) return send(res, 401, "Unauthorized");
       ensureStore();
