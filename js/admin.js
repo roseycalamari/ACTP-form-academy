@@ -33,8 +33,9 @@
   }
 
   async function api(url, opts) {
-    const res = await fetch(url, opts);
+    const res = await fetch(url, Object.assign({ credentials: "same-origin" }, opts || {}));
     if (res.status === 401) throw new Error("auth");
+    if (res.status === 503) throw new Error("store");
     if (!res.ok) throw new Error("http");
     return res.json();
   }
@@ -155,7 +156,10 @@
       adminSheet.classList.remove("is-hidden");
       await load();
     } catch (err) {
-      loginError.textContent = "Password incorreta.";
+      loginError.textContent =
+        err && err.message === "store"
+          ? "No Vercel as fichas não ficam gravadas enquanto não ligar um KV: Storage → Create KV → Connect → Redeploy."
+          : "Password incorreta.";
       loginError.classList.add("show");
     }
   });
