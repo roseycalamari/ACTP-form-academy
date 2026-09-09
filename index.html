@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACTP · Disponibilidade de aulas · Pais</title>
+  <meta name="description" content="Ficha de disponibilidade — Annabel Croft Tennis & Padel, Pine Cliffs. Sem compromisso." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="sheet" id="formSheet">
+    <div class="top-nav">
+      <div class="nav-links">
+        <span data-i18n="academy">Academy</span>
+        <span data-i18n="social">Social</span>
+        <span data-i18n="pineCliffs">Pine Cliffs</span>
+      </div>
+    </div>
+    <div class="lang-row">
+      <span class="lang-row-label">Idioma · Language</span>
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+
+    <div class="logo">
+      <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
+    </div>
+    <hr class="rule" />
+
+    <div class="banner">
+      <strong data-i18n="noCommitKicker">Sem compromisso · apenas informação</strong>
+      <p data-i18n="noCommit"></p>
+    </div>
+
+    <p class="lead">
+      <span data-i18n="lead"></span>
+      <strong data-i18n="season"></strong>
+    </p>
+
+    <div class="when">
+      <span class="when-title" data-i18n="whenTitle"></span>
+      <span data-i18n="whenSub"></span>
+    </div>
+
+    <hr class="rule" />
+
+    <form id="availabilityForm" novalidate>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" />
+
+      <h2 data-i18n="studentInfo"></h2>
+      <div class="fields">
+        <div class="field">
+          <label for="studentName" data-i18n="studentName"></label>
+          <input id="studentName" name="studentName" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="age" data-i18n="age"></label>
+          <input id="age" name="age" type="number" min="3" max="18" required inputmode="numeric" />
+        </div>
+        <div class="field">
+          <label for="parentName" data-i18n="parentName"></label>
+          <input id="parentName" name="parentName" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="phone" data-i18n="phone"></label>
+          <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="email" data-i18n="email"></label>
+          <input id="email" name="email" type="email" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="school" data-i18n="school"></label>
+          <input id="school" name="school" />
+        </div>
+      </div>
+
+      <h2 data-i18n="sport"></h2>
+      <div class="row-choices">
+        <label class="choice">
+          <input type="radio" name="sport" value="tennis" />
+          <span class="box"></span>
+          <span data-i18n="tennis"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="sport" value="padel" />
+          <span class="box"></span>
+          <span data-i18n="padel"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="sport" value="both" />
+          <span class="box"></span>
+          <span data-i18n="both"></span>
+        </label>
+      </div>
+
+      <h2 data-i18n="timesTitle"></h2>
+      <p class="hint" data-i18n="timesHint"></p>
+      <div class="row-choices">
+        <label class="choice">
+          <input type="radio" name="timesPerWeek" value="1" />
+          <span class="box"></span>
+          <span data-i18n="times1"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="timesPerWeek" value="2" />
+          <span class="box"></span>
+          <span data-i18n="times2"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="timesPerWeek" value="3" />
+          <span class="box"></span>
+          <span data-i18n="times3"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="timesPerWeek" value="flexible" />
+          <span class="box"></span>
+          <span data-i18n="timesFlex"></span>
+        </label>
+      </div>
+
+      <h2 data-i18n="gridTitle"></h2>
+      <p class="hint" data-i18n="gridHint"></p>
+      <div class="grid-wrap">
+        <table class="grid" id="slotGrid">
+          <thead>
+            <tr>
+              <th class="t" data-i18n="schedule"></th>
+              <th data-i18n="mon"></th>
+              <th data-i18n="tue"></th>
+              <th data-i18n="wed"></th>
+              <th data-i18n="thu"></th>
+              <th data-i18n="fri"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="live" id="slotSummary"></p>
+
+      <div class="note">
+        <strong data-i18n="howTitle"></strong>
+        <span data-i18n="howBody"></span>
+      </div>
+
+      <h2 data-i18n="prefTitle"></h2>
+      <p class="hint" data-i18n="prefHint"></p>
+      <div class="fields">
+        <div class="field">
+          <label for="firstChoice" data-i18n="firstChoice"></label>
+          <select id="firstChoice" name="firstChoice"></select>
+        </div>
+        <div class="field">
+          <label for="secondChoice" data-i18n="secondChoice"></label>
+          <select id="secondChoice" name="secondChoice"></select>
+        </div>
+      </div>
+
+      <section id="tennisLevelBlock">
+        <h2 data-i18n="tennisLevelTitle"></h2>
+        <p class="hint" data-i18n="tennisLevelHint"></p>
+        <div class="row-choices">
+          <label class="choice"><input type="radio" name="tennisLevel" value="red" /><span class="box"></span><span data-i18n="levelRed"></span></label>
+          <label class="choice"><input type="radio" name="tennisLevel" value="orange" /><span class="box"></span><span data-i18n="levelOrange"></span></label>
+          <label class="choice"><input type="radio" name="tennisLevel" value="green" /><span class="box"></span><span data-i18n="levelGreen"></span></label>
+          <label class="choice"><input type="radio" name="tennisLevel" value="yellow" /><span class="box"></span><span data-i18n="levelYellow"></span></label>
+          <label class="choice"><input type="radio" name="tennisLevel" value="unknown" /><span class="box"></span><span data-i18n="levelUnknown"></span></label>
+        </div>
+      </section>
+
+      <section id="padelLevelBlock" class="is-hidden">
+        <h2 data-i18n="padelLevelTitle"></h2>
+        <div class="row-choices">
+          <label class="choice"><input type="radio" name="padelLevel" value="beginner" /><span class="box"></span><span data-i18n="padelBeginner"></span></label>
+          <label class="choice"><input type="radio" name="padelLevel" value="intermediate" /><span class="box"></span><span data-i18n="padelIntermediate"></span></label>
+          <label class="choice"><input type="radio" name="padelLevel" value="teens" /><span class="box"></span><span data-i18n="padelTeens"></span></label>
+          <label class="choice"><input type="radio" name="padelLevel" value="unknown" /><span class="box"></span><span data-i18n="levelUnknown"></span></label>
+        </div>
+      </section>
+
+      <h2 data-i18n="child2Title"></h2>
+      <div class="fields">
+        <div class="field">
+          <label for="child2Name" data-i18n="child2Name"></label>
+          <input id="child2Name" name="child2Name" />
+        </div>
+        <div class="field">
+          <label for="child2Age" data-i18n="child2Age"></label>
+          <input id="child2Age" name="child2Age" type="number" min="3" max="18" inputmode="numeric" />
+        </div>
+      </div>
+      <div class="row-choices">
+        <label class="choice">
+          <input type="radio" name="child2Schedule" value="same" />
+          <span class="box"></span>
+          <span data-i18n="child2Same"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="child2Schedule" value="different" />
+          <span class="box"></span>
+          <span data-i18n="child2Different"></span>
+        </label>
+      </div>
+
+      <h2 data-i18n="notes"></h2>
+      <div class="field">
+        <textarea id="notes" name="notes" rows="4" data-i18n-placeholder="notesPlaceholder"></textarea>
+      </div>
+
+      <label class="confirm">
+        <input type="checkbox" name="confirmed" id="confirmed" required />
+        <span data-i18n="confirmLabel"></span>
+      </label>
+
+      <div class="form-error" id="formError" role="alert"></div>
+      <button class="submit" type="submit" data-i18n="submit"></button>
+
+      <div class="note" style="margin-top:18px">
+        <span data-i18n="priceNote"></span>
+      </div>
+    </form>
+
+    <div class="footer-bar">
+      <span data-i18n="contactFooter"></span>
+      <b id="footerPhone"></b>
+    </div>
+  </main>
+
+  <section class="success" id="successSheet" aria-live="polite">
+    <div class="top-nav">
+      <div class="nav-links">
+        <span data-i18n="academy">Academy</span>
+        <span data-i18n="social">Social</span>
+        <span data-i18n="pineCliffs">Pine Cliffs</span>
+      </div>
+    </div>
+    <div class="logo logo--sm">
+      <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
+    </div>
+    <p class="kicker" data-i18n="successKicker"></p>
+    <h1 data-i18n="successTitle"></h1>
+    <p data-i18n="successBody"></p>
+    <p class="ref" id="successRef"></p>
+    <div class="success-actions">
+      <a class="primary" id="whatsAppLink" target="_blank" rel="noopener" data-i18n="successWhatsApp"></a>
+      <button type="button" class="linkish" id="againBtn" data-i18n="successAgain"></button>
+    </div>
+    <div class="footer-bar">
+      <span data-i18n="contactFooter"></span>
+      <b class="footerPhoneCopy"></b>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

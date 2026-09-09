@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACTP · Respostas · Disponibilidade</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="admin-body">
+  <section class="login" id="loginBox">
+    <div class="logo logo--sm">
+      <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
+    </div>
+    <h1>Respostas</h1>
+    <p class="hint">Área da equipa — as fichas dos pais aparecem aqui.</p>
+    <form id="loginForm">
+      <div class="field" style="margin:16px 0">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required />
+      </div>
+      <div class="form-error" id="loginError"></div>
+      <button class="submit" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <main class="sheet admin-sheet is-hidden" id="adminSheet">
+    <div class="top-nav">
+      <div class="nav-links">
+        <span>Academy</span>
+        <span>Social</span>
+        <span>Pine Cliffs</span>
+      </div>
+    </div>
+    <p class="admin-form-link"><a href="/">Formulário</a></p>
+    <div class="logo logo--sm">
+      <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
+    </div>
+    <div class="brand">Disponibilidade</div>
+    <div class="brand-sub">Respostas das famílias · sem compromisso</div>
+    <hr class="rule" />
+
+    <div class="stats">
+      <div class="stat"><b id="statTotal">0</b><span>Fichas</span></div>
+      <div class="stat"><b id="statKids">0</b><span>Crianças</span></div>
+      <div class="stat"><b id="statReady">0</b><span>Horários com 4+</span></div>
+    </div>
+
+    <h2>Procura por horário</h2>
+    <p class="hint">Quantas famílias marcaram cada combinação. A preto (4+) está pronto a fechar turma.</p>
+    <div class="grid-wrap">
+      <table class="grid heat" id="heatTable">
+        <thead>
+          <tr>
+            <th class="t">Horário</th>
+            <th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="toolbar">
+      <a id="csvLink" href="/api/export.csv">Exportar CSV</a>
+      <button type="button" id="refreshBtn">Atualizar</button>
+    </div>
+
+    <h2>Famílias</h2>
+    <div id="list"></div>
+    <p class="empty is-hidden" id="empty">Ainda não há respostas.</p>
+  </main>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
