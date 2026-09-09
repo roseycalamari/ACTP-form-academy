@@ -138,9 +138,18 @@
       .replace(/"/g, "&quot;");
   }
 
+  const storeBanner = document.getElementById("storeBanner");
+  const STORE_MSG = "As fichas da internet ainda não estão a ser gravadas. No Vercel: Storage → Upstash Redis (grátis) → ligar a este projeto → Redeploy.";
+
   async function load() {
     const data = await api("/api/submissions");
+    if (storeBanner) storeBanner.classList.remove("show");
     render(data);
+  }
+
+  function enterAdmin() {
+    loginBox.classList.add("is-hidden");
+    adminSheet.classList.remove("is-hidden");
   }
 
   document.getElementById("loginForm").addEventListener("submit", async function (e) {
@@ -152,26 +161,28 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: document.getElementById("password").value })
       });
-      loginBox.classList.add("is-hidden");
-      adminSheet.classList.remove("is-hidden");
-      await load();
+      enterAdmin();
+      try {
+        await load();
+      } catch (err) {
+        if (storeBanner && err && err.message === "store") storeBanner.classList.add("show");
+      }
     } catch (err) {
       loginError.textContent =
-        err && err.message === "store"
-          ? "No Vercel as fichas não ficam gravadas enquanto não ligar um KV: Storage → Create KV → Connect → Redeploy."
-          : "Password incorreta.";
+        err && err.message === "store" ? STORE_MSG : "Password incorreta.";
       loginError.classList.add("show");
     }
   });
 
   document.getElementById("refreshBtn").addEventListener("click", function () {
-    load().catch(function () {});
+    load().catch(function (err) {
+      if (storeBanner && err && err.message === "store") storeBanner.classList.add("show");
+    });
   });
 
   api("/api/submissions")
     .then(function (data) {
-      loginBox.classList.add("is-hidden");
-      adminSheet.classList.remove("is-hidden");
+      enterAdmin();
       render(data);
     })
     .catch(function () {});
