@@ -2,6 +2,7 @@
 window.ACTP_CONFIG = {
   phoneDisplay: "+351 962 669 288",
   phoneWhatsApp: "351962669288",
+  email: "pinecliffs@annabelcrofttennis.com",
 
   /*
     Optional extra inbox (works even without the Node server).

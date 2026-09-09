@@ -327,6 +327,16 @@
   document.querySelectorAll(".footerPhoneCopy").forEach(function (el) {
     el.textContent = cfg.phoneDisplay || "+351 962 669 288";
   });
+  const email = cfg.email || "pinecliffs@annabelcrofttennis.com";
+  const mailLink = document.getElementById("footerEmail");
+  if (mailLink) {
+    mailLink.textContent = email;
+    mailLink.href = "mailto:" + email;
+  }
+  document.querySelectorAll(".footerEmailCopy").forEach(function (el) {
+    el.textContent = email;
+    el.href = "mailto:" + email;
+  });
 
   buildGrid();
   const saved = localStorage.getItem("actp-lang");

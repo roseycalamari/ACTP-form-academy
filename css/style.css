@@ -472,16 +472,34 @@ button.submit:disabled { opacity: 0.55; cursor: wait; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 36px;
+  gap: 12px;
+  padding: 10px 36px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.footer-bar b {
+.footer-contacts {
+  text-align: right;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.footer-contacts b {
+  display: block;
   font-size: 16px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footer-contacts a {
+  display: block;
+  color: #111;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 2px;
 }
 
 .success {
@@ -819,7 +837,9 @@ body.done .success { display: block; }
 @media (max-width: 700px) {
   body { padding: 0 0 24px; }
   .sheet, .success { padding: 22px 18px 72px; }
-  .footer-bar { padding: 12px 18px; }
+  .footer-bar { padding: 10px 18px; }
+  .footer-contacts b { font-size: 14px; }
+  .footer-contacts a { font-size: 11px; }
   .fields { grid-template-columns: 1fr; gap: 12px; }
   .brand { font-size: 32px; }
   .logo img { width: min(320px, 100%); }
