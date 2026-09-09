@@ -21,7 +21,9 @@
     intermediate: "Intermédio",
     teens: "Adolescentes",
     same: "Mesmos horários",
-    different: "Horários diferentes"
+    different: "Horários diferentes",
+    girl: "Menina",
+    boy: "Menino"
   };
 
   const BALLS = ["red", "orange", "green", "yellow", "unknown"];
@@ -49,6 +51,12 @@
   function tennisBall(row) {
     if (row.sport === "padel") return "";
     return row.tennisLevel || "unknown";
+  }
+
+  function nameWithGender(name, gender) {
+    if (!name) return "";
+    if (gender === "girl" || gender === "boy") return name + " (" + labels[gender] + ")";
+    return name;
   }
 
   async function api(url, opts) {
@@ -133,8 +141,8 @@
     const namesByKey = {};
     items.forEach(function (row) {
       const ball = tennisBall(row);
-      const names = [row.studentName].concat(
-        row.child2Name && row.child2Schedule !== "different" ? [row.child2Name] : []
+      const names = [nameWithGender(row.studentName, row.gender)].concat(
+        row.child2Name && row.child2Schedule !== "different" ? [nameWithGender(row.child2Name, row.child2Gender)] : []
       ).filter(Boolean);
       (row.slots || []).forEach(function (slot) {
         if (ball) {
@@ -220,13 +228,14 @@
         '<div class="sub-top">' +
           '<button type="button" class="sub-head">' +
             "<div><strong>" + escapeHtml(row.studentName || "—") + escapeHtml(child2) + "</strong>" +
-            "<div><span>" + escapeHtml(row.parentName || "") + " · " + escapeHtml(row.phone || "") + "</span></div></div>" +
+            "<div><span>" + escapeHtml((labels[row.gender] || "") + (row.gender && row.age ? " · " : "") + (row.age ? row.age + " anos" : "") + (row.parentName ? " · " + row.parentName : "") + (row.phone ? " · " + row.phone : "")) + "</span></div></div>" +
             "<span>" + escapeHtml((labels[row.sport] || row.sport || "") + (row.tennisLevel && row.sport !== "padel" ? " · " + (labels[row.tennisLevel] || row.tennisLevel) : "") + " · " + when) + "</span>" +
           "</button>" +
           '<button type="button" class="sub-del" data-id="' + escapeHtml(row.id || "") + '">Apagar</button>' +
         "</div>" +
         '<div class="sub-body"><dl>' +
           field("Idade", row.age) +
+          field("Menina / menino", labels[row.gender] || row.gender) +
           field("Email", row.email) +
           field("Escola", row.school) +
           field("Vezes / semana", labels[row.timesPerWeek] || row.timesPerWeek) +
@@ -235,7 +244,7 @@
           field("2.ª escolha", slotLabel(row.secondChoice)) +
           field("Nível ténis", labels[row.tennisLevel] || row.tennisLevel) +
           field("Nível padel", labels[row.padelLevel] || row.padelLevel) +
-          field("2.º filho", [row.child2Name, row.child2Age, labels[row.child2Schedule] || row.child2Schedule].filter(Boolean).join(" · ")) +
+          field("2.º filho", [row.child2Name, row.child2Age, labels[row.child2Gender] || row.child2Gender, labels[row.child2Schedule] || row.child2Schedule].filter(Boolean).join(" · ")) +
           field("Notas", row.notes) +
           field("Idioma", row.language) +
           field("Ref", row.id) +

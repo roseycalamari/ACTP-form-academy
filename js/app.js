@@ -172,6 +172,7 @@
       language: lang,
       studentName: form.studentName.value.trim(),
       age: form.age.value.trim(),
+      gender: radioVal("gender"),
       parentName: form.parentName.value.trim(),
       phone: form.phone.value.trim(),
       email: form.email.value.trim(),
@@ -185,6 +186,7 @@
       padelLevel: radioVal("padelLevel"),
       child2Name: form.child2Name.value.trim(),
       child2Age: form.child2Age.value.trim(),
+      child2Gender: radioVal("child2Gender"),
       child2Schedule: radioVal("child2Schedule"),
       notes: form.notes.value.trim(),
       confirmed: form.confirmed.checked,
@@ -194,6 +196,7 @@
 
   function validate(data) {
     if (!data.studentName || !data.age || !data.parentName || !data.phone) return t("errRequired");
+    if (!data.gender) return t("errGender");
     if (digits(data.phone).length < 9) return t("errPhone");
     if (!validEmail(data.email)) return t("errEmail");
     if (!data.sport) return t("errSport");
@@ -207,7 +210,7 @@
     const lines = [
       "ACTP · " + (lang === "en" ? "Availability (no commitment)" : "Disponibilidade (sem compromisso)"),
       "",
-      (lang === "en" ? "Student" : "Aluno") + ": " + data.studentName + " (" + data.age + ")",
+      (lang === "en" ? "Student" : "Aluno") + ": " + data.studentName + " (" + data.age + ", " + (data.gender === "boy" ? (lang === "en" ? "boy" : "menino") : (lang === "en" ? "girl" : "menina")) + ")",
       (lang === "en" ? "Parent" : "Encarregado") + ": " + data.parentName,
       "WhatsApp: " + data.phone,
       data.email ? "Email: " + data.email : "",

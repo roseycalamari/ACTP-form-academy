@@ -15,9 +15,9 @@ function doPost(e) {
   const data = JSON.parse(e.postData.contents);
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
-      "id", "submittedAt", "language", "studentName", "age", "parentName", "phone",
+      "id", "submittedAt", "language", "studentName", "age", "gender", "parentName", "phone",
       "email", "school", "sport", "timesPerWeek", "slots", "firstChoice", "secondChoice",
-      "tennisLevel", "padelLevel", "child2Name", "child2Age", "child2Schedule", "notes"
+      "tennisLevel", "padelLevel", "child2Name", "child2Age", "child2Gender", "child2Schedule", "notes"
     ]);
   }
   const id = "actp-" + Date.now();
@@ -27,6 +27,7 @@ function doPost(e) {
     data.language || "",
     data.studentName || "",
     data.age || "",
+    data.gender || "",
     data.parentName || "",
     data.phone || "",
     data.email || "",
@@ -40,6 +41,7 @@ function doPost(e) {
     data.padelLevel || "",
     data.child2Name || "",
     data.child2Age || "",
+    data.child2Gender || "",
     data.child2Schedule || "",
     data.notes || ""
   ]);
