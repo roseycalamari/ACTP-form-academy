@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>ACTP · Respostas · Disponibilidade</title>
+  <title>ACTP · Respostas</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="admin-body">
@@ -12,7 +12,7 @@
       <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
     </div>
     <h1>Respostas</h1>
-    <p class="hint">Área da equipa — as fichas dos pais aparecem aqui.</p>
+    <p class="hint">Área da equipa — as fichas aparecem aqui.</p>
     <form id="loginForm">
       <div class="field" style="margin:16px 0">
         <label for="password">Password</label>
@@ -31,55 +31,78 @@
         <span>Pine Cliffs</span>
       </div>
     </div>
-    <p class="admin-form-link"><a href="/">Formulário</a></p>
+    <p class="admin-form-link">
+      <a href="/">Aulas</a>
+      <a href="/social">Social</a>
+      <a href="/play">Play</a>
+    </p>
     <div class="logo logo--sm">
       <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
     </div>
-    <div class="brand">Disponibilidade</div>
-    <div class="brand-sub">Respostas das famílias · sem compromisso</div>
+    <div class="brand" id="brandTitle">Disponibilidade</div>
+    <div class="brand-sub" id="brandSub">Respostas das famílias · sem compromisso</div>
     <hr class="rule" />
 
     <div class="form-error" id="storeBanner">As fichas da internet ainda não estão a ser gravadas. No Vercel: Storage → Upstash Redis (grátis) → ligar a este projeto → Redeploy. Depois volte a submeter o formulário.</div>
 
+    <div class="admin-tabs" role="tablist">
+      <button type="button" role="tab" data-tab="academy" aria-selected="true">Aulas</button>
+      <button type="button" role="tab" data-tab="social" aria-selected="false">Social</button>
+      <button type="button" role="tab" data-tab="play" aria-selected="false">Play Membership</button>
+    </div>
+
     <div class="stats">
-      <div class="stat"><b id="statTotal">0</b><span>Fichas</span></div>
-      <div class="stat"><b id="statKids">0</b><span>Crianças</span></div>
-      <div class="stat"><b id="statReady">0</b><span>Turmas 4+ (mesma bola)</span></div>
+      <div class="stat"><b id="statTotal">0</b><span id="statTotalLabel">Fichas</span></div>
+      <div class="stat"><b id="statKids">0</b><span id="statKidsLabel">Crianças</span></div>
+      <div class="stat"><b id="statReady">0</b><span id="statReadyLabel">Turmas prontas</span></div>
     </div>
 
-    <h2>Procura por horário e bola</h2>
-    <p class="hint">Em cada célula: alunos por cor de bola nesse dia e hora. Uma turma fecha quando a mesma bola chega a 4 nesse horário.</p>
-    <div class="ball-legend" aria-hidden="true">
-      <span><i class="ball-dot red"></i> Red</span>
-      <span><i class="ball-dot orange"></i> Orange</span>
-      <span><i class="ball-dot green"></i> Green</span>
-      <span><i class="ball-dot yellow"></i> Yellow</span>
-      <span><i class="ball-dot unknown"></i> Por confirmar</span>
-    </div>
-    <div class="grid-wrap">
-      <table class="grid heat" id="heatTable">
-        <thead>
-          <tr>
-            <th class="t">Horário</th>
-            <th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    <section class="admin-panel" id="panelAcademy">
+      <h2>Procura por horário e bola</h2>
+      <p class="hint">Em cada célula: alunos por cor de bola nesse dia e hora. Yellow até 12 fecha com 6; yellow 13+ e as outras bolas fecham com 4.</p>
+      <div class="ball-legend" aria-hidden="true">
+        <span><i class="ball-dot red"></i> Red · 4</span>
+        <span><i class="ball-dot orange"></i> Orange · 4</span>
+        <span><i class="ball-dot green"></i> Green · 4</span>
+        <span><i class="ball-dot yellow"></i> Yellow ≤12 · 6</span>
+        <span><i class="ball-dot yellow"></i> Yellow 13+ · 4</span>
+        <span><i class="ball-dot unknown"></i> Por confirmar · 4</span>
+      </div>
+      <div class="grid-wrap">
+        <table class="grid heat" id="heatTable">
+          <thead>
+            <tr>
+              <th class="t">Horário</th>
+              <th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
-    <h2>Turmas por bola</h2>
-    <p class="hint">Agrupado por cor. Cada horário mostra o progresso até 4 alunos — o mínimo para fechar a turma.</p>
-    <div id="ballGraph"></div>
-    <p class="empty is-hidden" id="graphEmpty">Ainda não há combinações bola + horário.</p>
+      <h2>Turmas por bola</h2>
+      <p class="hint">Agrupado por cor. Yellow até 12 precisa de 6; a partir dos 13, e as outras bolas, precisam de 4.</p>
+      <div id="ballGraph"></div>
+      <p class="empty is-hidden" id="graphEmpty">Ainda não há combinações bola + horário.</p>
+    </section>
+
+    <section class="admin-panel is-hidden" id="panelSocial">
+      <h2>Social fim-de-semana</h2>
+      <p class="hint">Interessados em jogar ao sábado e domingo — sem aulas.</p>
+    </section>
+
+    <section class="admin-panel is-hidden" id="panelPlay">
+      <h2>Play Membership</h2>
+      <p class="hint">Pedidos play only · quem já joga, sem aulas.</p>
+    </section>
 
     <div class="toolbar">
-      <a id="csvLink" href="/api/export.csv">Exportar CSV</a>
+      <a id="csvLink" href="/api/export.csv?kind=academy">Exportar CSV</a>
       <button type="button" id="refreshBtn">Atualizar</button>
     </div>
 
-    <h2>Famílias</h2>
-    <p class="hint">Abra uma ficha para ver os detalhes. Use Apagar para testes ou fichas que não contam.</p>
+    <h2 id="listTitle">Famílias</h2>
+    <p class="hint" id="listHint">Abra uma ficha para ver os detalhes. Use Apagar para testes ou fichas que não contam.</p>
     <div id="list"></div>
     <p class="empty is-hidden" id="empty">Ainda não há respostas.</p>
   </main>

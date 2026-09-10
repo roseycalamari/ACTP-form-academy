@@ -179,6 +179,7 @@
 
   function collect() {
     return {
+      kind: "academy",
       language: lang,
       studentName: form.studentName.value.trim(),
       age: form.age.value.trim(),
@@ -248,7 +249,7 @@
     document.getElementById("successRef").textContent =
       t("successRef") + " · " + (id || "local");
     setWhatsApp(data);
-    const body = document.querySelector("#successSheet [data-i18n='successBody']");
+    const body = document.getElementById("successBody");
     if (body && !delivered) {
       body.textContent =
         lang === "en"

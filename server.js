@@ -14,6 +14,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { newRow, isComplete, toCsv, ofKind } = require("./lib/data");
 
 const ROOT = __dirname;
 const DATA_DIR = path.join(ROOT, "data");
@@ -34,11 +35,6 @@ const MIME = {
 };
 
 const sessions = new Set();
-const CSV_HEADERS = [
-  "id", "submittedAt", "language", "studentName", "age", "gender", "parentName", "phone",
-  "email", "school", "sport", "timesPerWeek", "slots", "firstChoice", "secondChoice",
-  "tennisLevel", "padelLevel", "child2Name", "child2Age", "child2Gender", "child2Schedule", "notes"
-];
 
 function ensureStore() {
   try {
@@ -60,24 +56,10 @@ function readAll() {
   }
 }
 
-function csvEscape(value) {
-  const s = String(value == null ? "" : value);
-  if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
-  return s;
-}
-
-function toCsvRow(row) {
-  return CSV_HEADERS.map(function (key) {
-    const value = key === "slots" && Array.isArray(row.slots) ? row.slots.join("|") : row[key];
-    return csvEscape(value);
-  }).join(",");
-}
-
 function writeAll(items) {
   ensureStore();
   fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 2) + "\n", "utf8");
-  const csv = "\uFEFF" + CSV_HEADERS.join(",") + "\n" + items.map(toCsvRow).join("\n") + "\n";
-  fs.writeFileSync(CSV_FILE, csv, "utf8");
+  fs.writeFileSync(CSV_FILE, toCsv(items), "utf8");
 }
 
 function parseCookies(req) {
@@ -121,43 +103,13 @@ function serveStatic(req, res, urlPath) {
   let rel = decodeURIComponent(urlPath.split("?")[0]);
   if (rel === "/") rel = "/index.html";
   if (rel === "/admin") rel = "/admin.html";
+  if (rel === "/social") rel = "/social.html";
+  if (rel === "/play") rel = "/play.html";
   const file = path.normalize(path.join(ROOT, rel));
   if (!file.startsWith(ROOT)) return send(res, 403, "Forbidden");
   if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) return send(res, 404, "Not found");
   const ext = path.extname(file);
   send(res, 200, fs.readFileSync(file), { "Content-Type": MIME[ext] || "application/octet-stream" });
-}
-
-function sanitize(data) {
-  const str = function (v, max) {
-    return String(v == null ? "" : v).trim().slice(0, max || 200);
-  };
-  const slots = Array.isArray(data.slots)
-    ? data.slots.map(function (s) { return str(s, 20); }).filter(Boolean).slice(0, 25)
-    : [];
-  return {
-    language: str(data.language, 8),
-    studentName: str(data.studentName, 120),
-    age: str(data.age, 8),
-    gender: str(data.gender, 8) === "boy" ? "boy" : (str(data.gender, 8) === "girl" ? "girl" : ""),
-    parentName: str(data.parentName, 120),
-    phone: str(data.phone, 40),
-    email: str(data.email, 120),
-    school: str(data.school, 120),
-    sport: str(data.sport, 20),
-    timesPerWeek: str(data.timesPerWeek, 20),
-    slots: slots,
-    firstChoice: str(data.firstChoice, 20),
-    secondChoice: str(data.secondChoice, 20),
-    tennisLevel: str(data.tennisLevel, 20),
-    padelLevel: str(data.padelLevel, 20),
-    child2Name: str(data.child2Name, 120),
-    child2Age: str(data.child2Age, 8),
-    child2Gender: str(data.child2Gender, 8) === "boy" ? "boy" : (str(data.child2Gender, 8) === "girl" ? "girl" : ""),
-    child2Schedule: str(data.child2Schedule, 20),
-    notes: str(data.notes, 2000),
-    confirmed: Boolean(data.confirmed)
-  };
 }
 
 const server = http.createServer(async function (req, res) {
@@ -181,16 +133,9 @@ const server = http.createServer(async function (req, res) {
     if (req.method === "POST" && p === "/api/submit") {
       const raw = JSON.parse((await readBody(req)) || "{}");
       if (raw.website) return sendJson(res, 200, { ok: true, id: "ignored" });
-      const row = sanitize(raw);
-      if (!row.studentName || !row.parentName || !row.phone || !row.sport || !row.slots.length) {
-        return sendJson(res, 400, { ok: false, error: "missing fields" });
-      }
+      const saved = newRow(raw);
+      if (!isComplete(saved)) return sendJson(res, 400, { ok: false, error: "missing fields" });
       const items = readAll();
-      const saved = {
-        id: "actp-" + Date.now().toString(36) + "-" + crypto.randomBytes(3).toString("hex"),
-        submittedAt: new Date().toISOString(),
-        ...row
-      };
       items.push(saved);
       writeAll(items);
       return sendJson(res, 200, { ok: true, id: saved.id });
@@ -215,13 +160,12 @@ const server = http.createServer(async function (req, res) {
 
     if (req.method === "GET" && p === "/api/export.csv") {
       if (!isAdmin(req)) return send(res, 401, "Unauthorized");
-      ensureStore();
-      const csv = fs.existsSync(CSV_FILE)
-        ? fs.readFileSync(CSV_FILE)
-        : Buffer.from("\uFEFF" + CSV_HEADERS.join(",") + "\n");
+      const kind = url.searchParams.get("kind") || "academy";
+      const csv = toCsv(ofKind(readAll(), kind));
+      const names = { academy: "actp-aulas.csv", social: "actp-social.csv", play: "actp-play-membership.csv" };
       return send(res, 200, csv, {
         "Content-Type": "text/csv; charset=utf-8",
-        "Content-Disposition": "attachment; filename=actp-disponibilidade.csv"
+        "Content-Disposition": "attachment; filename=" + (names[kind] || "actp.csv")
       });
     }
 
@@ -235,6 +179,8 @@ const server = http.createServer(async function (req, res) {
 ensureStore();
 server.listen(PORT, function () {
   console.log("ACTP availability form:  http://localhost:" + PORT);
+  console.log("Weekend social:          http://localhost:" + PORT + "/social");
+  console.log("Play membership:         http://localhost:" + PORT + "/play");
   console.log("Team inbox:              http://localhost:" + PORT + "/admin");
   console.log("Admin password:          " + (process.env.ACTP_ADMIN_PASSWORD ? "(from ACTP_ADMIN_PASSWORD)" : "adminruben"));
   console.log("Saved to:                " + DATA_FILE);

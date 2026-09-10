@@ -2,6 +2,8 @@
   "framework": null,
   "rewrites": [
     { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/social", "destination": "/social.html" },
+    { "source": "/play", "destination": "/play.html" },
     { "source": "/api/export.csv", "destination": "/api/export" }
   ]
 }

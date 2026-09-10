@@ -5,11 +5,14 @@ window.ACTP_I18N = {
     academy: "Academy",
     social: "Social",
     pineCliffs: "Pine Cliffs",
+    navAulas: "Aulas",
+    navSocial: "Social fim-de-semana",
+    navPlay: "Play Membership",
     brand: "Annabel Croft",
     brandSub: "Tennis & Padel",
     noCommitKicker: "Sem compromisso · apenas informação",
     noCommit:
-      "Isto não é uma inscrição definitiva nem um pagamento. Basta preencher para nos dar informação — assim conseguimos formar turmas. Só confirmamos o lugar (e só se paga) quando a turma fechar, normalmente com 4 alunos.",
+      "Isto não é uma inscrição definitiva nem um pagamento. Basta preencher para nos dar informação — assim conseguimos formar turmas. Só confirmamos o lugar (e só se paga) quando a turma fechar: 4 alunos, ou 6 na bola yellow até aos 12 anos.",
     lead:
       "Aulas locais de ténis e padel no Pine Cliffs. Diga-nos quando pode trazer o(a) seu/sua filho(a) — construímos as turmas a partir da vossa disponibilidade.",
     season: "Época 2026/27 · Novembro a Março/Abril · Pine Cliffs Resort, Albufeira.",
@@ -54,7 +57,7 @@ window.ACTP_I18N = {
     selectedCount: "{n} horário(s) possível(is)",
     howTitle: "Como funciona:",
     howBody:
-      "Abrimos estes horários a todas as famílias. Quando uma turma chega ao mínimo (normalmente 4), fechamos esse dia e hora e confirmamos por WhatsApp. Só paga quando o lugar estiver confirmado.",
+      "Abrimos estes horários a todas as famílias. Quando uma turma chega ao mínimo, fechamos esse dia e hora e confirmamos por WhatsApp. O mínimo é 4 alunos — excepto bola yellow até aos 12 anos, que fecha com 6. A partir dos 13, yellow fecha com 4. Só paga quando o lugar estiver confirmado.",
     prefTitle: "Preferência de horário (opcional)",
     prefHint: "Se tiver um 1.º e 2.º preferidos dentro das caixas que marcou:",
     firstChoice: "1.ª escolha · dia + hora",
@@ -72,7 +75,7 @@ window.ACTP_I18N = {
     levelRed: "Red (idades 5–7)",
     levelOrange: "Orange (idades 7–8)",
     levelGreen: "Green (idades 8–10)",
-    levelYellow: "Yellow (idades 10/11+)",
+    levelYellow: "Yellow (idades 10/11+ · 6 até aos 12, 4 a partir dos 13)",
     levelUnknown: "Não sei",
     padelBeginner: "Iniciante",
     padelIntermediate: "Intermédio",
@@ -89,7 +92,7 @@ window.ACTP_I18N = {
     submit: "Enviar disponibilidade",
     sending: "A enviar…",
     priceNote:
-      "Preçário local (indicação): crianças €16 / hora · turmas a partir de 4 alunos. Pack e confirmação quando a turma fechar.",
+      "Preçário local (indicação): crianças €16 / hora · turmas a partir de 4 alunos (6 na bola yellow até aos 12; 4 a partir dos 13). Pack e confirmação quando a turma fechar.",
     contactFooter: "Mais informação contacte",
     errRequired: "Por favor preencha os campos obrigatórios.",
     errGender: "Indique se é menina ou menino.",
@@ -106,7 +109,59 @@ window.ACTP_I18N = {
     successWhatsApp: "Enviar uma cópia por WhatsApp",
     successAgain: "Enviar outra ficha",
     successRef: "Referência",
-    placeholderChoice: "Marque horários acima primeiro"
+    placeholderChoice: "Marque horários acima primeiro",
+
+    titleSocial: "ACTP · Social fim-de-semana",
+    socialKicker: "Sem compromisso · apenas interesse",
+    socialNoCommit:
+      "Isto não é uma inscrição paga. Diga-nos se gostava de jogar ao fim-de-semana — ténis ou padel — para formarmos grupos sociais.",
+    socialLead:
+      "Jogos sociais de ténis e padel ao sábado e domingo no Pine Cliffs. Para quem já joga, ou quer começar a jogar em ambiente de clube, sem aulas.",
+    socialWhenTitle: "Fim-de-semana",
+    socialWhenSub: "Sábado e domingo · manhã ou tarde",
+    socialName: "Nome",
+    socialInfo: "Os seus dados",
+    socialDaysTitle: "Que dias lhe dão jeito?",
+    sat: "Sábado",
+    sun: "Domingo",
+    socialWhenTitle2: "Prefere manhã ou tarde?",
+    socialMorning: "Manhã",
+    socialAfternoon: "Tarde",
+    socialFlexible: "Flexível",
+    socialNotesPlaceholder: "Nível aproximado, com quem joga, horários que prefere…",
+    socialConfirm:
+      "Confirmo que estes dados estão corretos. Percebo que isto é só interesse — sem pagamento agora.",
+    socialSubmit: "Enviar interesse",
+    socialSuccessTitle: "Obrigado — registámos o interesse.",
+    socialSuccessBody:
+      "Quando houver grupo ao fim-de-semana, contactamos por WhatsApp. Não precisam de pagar nada agora.",
+    errDays: "Marque sábado, domingo, ou ambos.",
+
+    titlePlay: "ACTP · Play Membership",
+    playKicker: "Play only · sem aulas",
+    playNoCommit:
+      "Isto é um pedido de informação / inscrição de interesse. O pagamento e a confirmação do lugar fazem-se depois, com o clube.",
+    playLead:
+      "Pensada para quem já joga regularmente. Sem aulas incluídas. Ténis e padel durante a época de inverno no Pine Cliffs.",
+    playWhenTitle: "Época de inverno",
+    playWhenSub: "Novembro a Março/Abril · 4 ténis + 4 padel, tudo com luz",
+    playAlreadyTitle: "Já joga regularmente?",
+    playAlready: "Sim — quero Play Membership, sem aulas",
+    playPlanTitle: "Que membership lhe interessa?",
+    playPlanPlay: "Play · €300 (5 meses · courts de ténis e padel)",
+    playPlanChanging: "Com balneários · €350 (a confirmar)",
+    playPlanGym: "+ Ginásio (a confirmar · preço superior)",
+    playIncludes:
+      "Incluído: até 6h de ténis / semana e 6h de padel / semana, pack de boas-vindas para membros novos, acesso ao resort como membro ACTP. Extra court e visitantes a confirmar.",
+    playNotesPlaceholder: "Disponibilidade, com quem joga, alguma pergunta…",
+    playConfirm:
+      "Confirmo que estes dados estão corretos. Percebo que o pagamento só acontece quando o clube confirmar o lugar.",
+    playSubmit: "Pedir Play Membership",
+    playSuccessTitle: "Obrigado — recebemos o pedido.",
+    playSuccessBody:
+      "A equipa contacta por WhatsApp para confirmar o plano e o lugar. Não é preciso pagar agora.",
+    errPlayAlready: "A Play Membership é para quem já joga — confirme essa opção.",
+    errPlayPlan: "Escolha o plano que lhe interessa."
   },
   en: {
     htmlLang: "en",
@@ -114,11 +169,14 @@ window.ACTP_I18N = {
     academy: "Academy",
     social: "Social",
     pineCliffs: "Pine Cliffs",
+    navAulas: "Lessons",
+    navSocial: "Weekend social",
+    navPlay: "Play Membership",
     brand: "Annabel Croft",
     brandSub: "Tennis & Padel",
     noCommitKicker: "No commitment · information only",
     noCommit:
-      "This is not a final enrolment and there is no payment yet. Just fill it in so we can gather information and form classes. We only confirm your spot (and you only pay) once a class is closed, usually with 4 students.",
+      "This is not a final enrolment and there is no payment yet. Just fill it in so we can gather information and form classes. We only confirm your spot (and you only pay) once a class is closed: 4 students, or 6 for yellow ball up to age 12.",
     lead:
       "Tennis and padel lessons at Pine Cliffs. Let us know when you can bring your child — we organise the classes based on your availability.",
     season: "2026–27 season · November through March/April · Pine Cliffs Resort, Albufeira.",
@@ -163,7 +221,7 @@ window.ACTP_I18N = {
     selectedCount: "{n} possible time slot(s)",
     howTitle: "How it works:",
     howBody:
-      "We open these time slots to all families. When a class reaches the minimum number of participants (usually 4), we close that day and time slot and confirm it via WhatsApp. You only pay once your spot is confirmed.",
+      "We open these time slots to all families. When a class reaches the minimum, we close that day and time and confirm it via WhatsApp. The minimum is 4 students — except yellow ball up to age 12, which closes with 6. From 13, yellow closes with 4. You only pay once your spot is confirmed.",
     prefTitle: "Preferred time (optional)",
     prefHint: "If you have a first and second choice among the boxes you checked:",
     firstChoice: "1st choice · day + time",
@@ -181,7 +239,7 @@ window.ACTP_I18N = {
     levelRed: "Red (ages 5–7)",
     levelOrange: "Orange (ages 7–8)",
     levelGreen: "Green (ages 8–10)",
-    levelYellow: "Yellow (ages 10/11+)",
+    levelYellow: "Yellow (ages 10/11+ · 6 until 12, 4 from 13)",
     levelUnknown: "I don’t know",
     padelBeginner: "Beginner",
     padelIntermediate: "Intermediate",
@@ -198,7 +256,7 @@ window.ACTP_I18N = {
     submit: "Send availability",
     sending: "Sending…",
     priceNote:
-      "Local price list (for reference): children €16/hour · classes start with 4 students. Confirmation once the class reaches 4 students.",
+      "Local price list (for reference): children €16/hour · classes start with 4 students (6 for yellow ball up to age 12; 4 from 13). Confirmation once the class closes.",
     contactFooter: "For more information, please contact us",
     errRequired: "Please fill in the required fields.",
     errGender: "Please say if it is a girl or a boy.",
@@ -215,7 +273,59 @@ window.ACTP_I18N = {
     successWhatsApp: "Send a copy via WhatsApp",
     successAgain: "Submit another form",
     successRef: "Reference",
-    placeholderChoice: "Check time slots above first"
+    placeholderChoice: "Check time slots above first",
+
+    titleSocial: "ACTP · Weekend social",
+    socialKicker: "No commitment · interest only",
+    socialNoCommit:
+      "This is not a paid enrolment. Tell us if you would like to play at the weekend — tennis or padel — so we can form social groups.",
+    socialLead:
+      "Weekend social tennis and padel at Pine Cliffs, Saturday and Sunday. For people who already play, or want to start playing in a club setting, with no lessons.",
+    socialWhenTitle: "Weekend",
+    socialWhenSub: "Saturday and Sunday · morning or afternoon",
+    socialName: "Name",
+    socialInfo: "Your details",
+    socialDaysTitle: "Which days work for you?",
+    sat: "Saturday",
+    sun: "Sunday",
+    socialWhenTitle2: "Morning or afternoon?",
+    socialMorning: "Morning",
+    socialAfternoon: "Afternoon",
+    socialFlexible: "Flexible",
+    socialNotesPlaceholder: "Approximate level, who you play with, preferred times…",
+    socialConfirm:
+      "I confirm this information is correct. I understand this is only interest — no payment now.",
+    socialSubmit: "Send interest",
+    socialSuccessTitle: "Thank you — we have your interest.",
+    socialSuccessBody:
+      "When there is a weekend group, we will contact you on WhatsApp. You do not need to pay anything now.",
+    errDays: "Please tick Saturday, Sunday, or both.",
+
+    titlePlay: "ACTP · Play Membership",
+    playKicker: "Play only · no lessons",
+    playNoCommit:
+      "This is a request for information / interest. Payment and confirmation happen afterwards, with the club.",
+    playLead:
+      "For people who already play regularly. No lessons included. Tennis and padel through the winter season at Pine Cliffs.",
+    playWhenTitle: "Winter season",
+    playWhenSub: "November through March/April · 4 tennis + 4 padel, all lit",
+    playAlreadyTitle: "Do you already play regularly?",
+    playAlready: "Yes — I want Play Membership, no lessons",
+    playPlanTitle: "Which membership are you interested in?",
+    playPlanPlay: "Play · €300 (5 months · tennis and padel courts)",
+    playPlanChanging: "With changing rooms · €350 (to confirm)",
+    playPlanGym: "+ Gym (to confirm · higher price)",
+    playIncludes:
+      "Included: up to 6h tennis / week and 6h padel / week, welcome pack for new members, resort access as an ACTP member. Extra court and visitors to confirm.",
+    playNotesPlaceholder: "Availability, who you play with, any question…",
+    playConfirm:
+      "I confirm this information is correct. I understand payment only happens once the club confirms the spot.",
+    playSubmit: "Request Play Membership",
+    playSuccessTitle: "Thank you — we have your request.",
+    playSuccessBody:
+      "The team will contact you on WhatsApp to confirm the plan and the spot. No payment is needed now.",
+    errPlayAlready: "Play Membership is for people who already play — please confirm that.",
+    errPlayPlan: "Please choose the plan you are interested in."
   }
 };
 

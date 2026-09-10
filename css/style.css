@@ -51,6 +51,28 @@ body { padding: 28px 16px 48px; }
 .nav-links span:nth-child(2) { text-align: center; }
 .nav-links span:nth-child(3) { text-align: right; margin-right: -0.28em; }
 
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 0 0 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-nav a {
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 2px;
+}
+
+.page-nav a.is-current {
+  border-bottom-color: #111;
+}
+
 .lang-row {
   display: flex;
   justify-content: flex-end;
@@ -111,6 +133,7 @@ body { padding: 28px 16px 48px; }
   font-weight: 700;
   color: #111;
   text-decoration: none;
+  margin-left: 14px;
 }
 
 .logo {
@@ -250,6 +273,11 @@ h2 {
   flex-wrap: wrap;
   gap: 8px 22px;
   margin: 0 0 8px;
+}
+
+.row-choices--stack {
+  flex-direction: column;
+  gap: 10px;
 }
 
 .choice {
@@ -584,6 +612,34 @@ body.done .success { display: block; }
   margin: 0 0 22px;
 }
 
+.admin-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 0 18px;
+  border: 1.5px solid #111;
+}
+
+.admin-tabs button {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  border-right: 1.5px solid #111;
+  background: #fff;
+  color: #111;
+  padding: 12px 8px;
+  cursor: pointer;
+}
+
+.admin-tabs button:last-child { border-right: none; }
+
+.admin-tabs button[aria-selected="true"] {
+  background: #111;
+  color: #fff;
+}
+
 .stat {
   border: 1.4px solid #111;
   padding: 12px 14px;
@@ -725,6 +781,12 @@ body.done .success { display: block; }
   font-size: 12px;
   font-weight: 800;
 }
+.heat-chip small {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-left: 1px;
+}
 .heat-chip .ball-dot { width: 10px; height: 10px; }
 
 .ball-legend {
@@ -795,7 +857,7 @@ body.done .success { display: block; }
   margin-top: 2px;
 }
 .turma-line.ready .turma-when span { color: #ccc; }
-.turma-pips { display: flex; gap: 5px; }
+.turma-pips { display: flex; flex-wrap: wrap; gap: 5px; max-width: 120px; justify-content: flex-end; }
 .pip {
   width: 14px;
   height: 14px;
@@ -865,6 +927,8 @@ body.done .success { display: block; }
     padding: 28px 16px 40px;
   }
   .top-nav { font-size: 9px; letter-spacing: 0.16em; margin-bottom: 8px; }
+  .page-nav { font-size: 9px; gap: 8px 12px; }
+  .admin-tabs button { font-size: 9px; padding: 11px 4px; letter-spacing: 0.04em; }
   .nav-links span:nth-child(3) { margin-right: 0; }
   .lang-row {
     justify-content: space-between;

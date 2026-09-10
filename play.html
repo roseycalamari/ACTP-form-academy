@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ACTP · Play Membership</title>
+  <meta name="description" content="Play Membership — quem já joga, sem aulas. Annabel Croft Tennis & Padel, Pine Cliffs." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="sheet" id="formSheet">
+    <div class="top-nav">
+      <div class="nav-links">
+        <span data-i18n="academy">Academy</span>
+        <span data-i18n="social">Social</span>
+        <span data-i18n="pineCliffs">Pine Cliffs</span>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="Formulários">
+      <a href="/" data-i18n="navAulas">Aulas</a>
+      <a href="/social" data-i18n="navSocial">Social fim-de-semana</a>
+      <a href="/play" class="is-current" data-i18n="navPlay">Play Membership</a>
+    </nav>
+    <div class="lang-row">
+      <span class="lang-row-label">Idioma · Language</span>
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+
+    <div class="logo">
+      <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
+    </div>
+    <hr class="rule" />
+
+    <div class="banner">
+      <strong data-i18n="playKicker">Play only · sem aulas</strong>
+      <p data-i18n="playNoCommit"></p>
+    </div>
+
+    <p class="lead">
+      <span data-i18n="playLead"></span>
+      <strong data-i18n="season"></strong>
+    </p>
+
+    <div class="when">
+      <span class="when-title" data-i18n="playWhenTitle"></span>
+      <span data-i18n="playWhenSub"></span>
+    </div>
+
+    <hr class="rule" />
+
+    <form id="playForm" novalidate>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" />
+
+      <h2 data-i18n="socialInfo">Os seus dados</h2>
+      <div class="fields">
+        <div class="field">
+          <label for="studentName" data-i18n="socialName"></label>
+          <input id="studentName" name="studentName" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="phone" data-i18n="phone"></label>
+          <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="email" data-i18n="email"></label>
+          <input id="email" name="email" type="email" autocomplete="email" />
+        </div>
+      </div>
+
+      <h2 data-i18n="playAlreadyTitle"></h2>
+      <div class="row-choices">
+        <label class="choice">
+          <input type="checkbox" name="playsAlready" id="playsAlready" />
+          <span class="box"></span>
+          <span data-i18n="playAlready"></span>
+        </label>
+      </div>
+
+      <h2 data-i18n="sport"></h2>
+      <div class="row-choices">
+        <label class="choice">
+          <input type="radio" name="sport" value="tennis" />
+          <span class="box"></span>
+          <span data-i18n="tennis"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="sport" value="padel" />
+          <span class="box"></span>
+          <span data-i18n="padel"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="sport" value="both" />
+          <span class="box"></span>
+          <span data-i18n="both"></span>
+        </label>
+      </div>
+
+      <h2 data-i18n="playPlanTitle"></h2>
+      <div class="row-choices row-choices--stack">
+        <label class="choice">
+          <input type="radio" name="playPlan" value="play" />
+          <span class="box"></span>
+          <span data-i18n="playPlanPlay"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="playPlan" value="changing" />
+          <span class="box"></span>
+          <span data-i18n="playPlanChanging"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="playPlan" value="gym" />
+          <span class="box"></span>
+          <span data-i18n="playPlanGym"></span>
+        </label>
+      </div>
+
+      <div class="note">
+        <span data-i18n="playIncludes"></span>
+      </div>
+
+      <h2 data-i18n="notes"></h2>
+      <div class="field">
+        <textarea id="notes" name="notes" rows="4" data-i18n-placeholder="playNotesPlaceholder"></textarea>
+      </div>
+
+      <label class="confirm">
+        <input type="checkbox" name="confirmed" id="confirmed" required />
+        <span data-i18n="playConfirm"></span>
+      </label>
+
+      <div class="form-error" id="formError" role="alert"></div>
+      <button class="submit" type="submit" data-i18n="playSubmit"></button>
+    </form>
+
+    <div class="footer-bar">
+      <span data-i18n="contactFooter"></span>
+      <div class="footer-contacts">
+        <b id="footerPhone"></b>
+        <a id="footerEmail" href="mailto:pinecliffs@annabelcrofttennis.com">pinecliffs@annabelcrofttennis.com</a>
+      </div>
+    </div>
+  </main>
+
+  <section class="success" id="successSheet" aria-live="polite">
+    <div class="top-nav">
+      <div class="nav-links">
+        <span data-i18n="academy">Academy</span>
+        <span data-i18n="social">Social</span>
+        <span data-i18n="pineCliffs">Pine Cliffs</span>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="Formulários">
+      <a href="/" data-i18n="navAulas">Aulas</a>
+      <a href="/social" data-i18n="navSocial">Social fim-de-semana</a>
+      <a href="/play" class="is-current" data-i18n="navPlay">Play Membership</a>
+    </nav>
+    <div class="logo logo--sm">
+      <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
+    </div>
+    <p class="kicker" data-i18n="successKicker"></p>
+    <h1 data-i18n="playSuccessTitle"></h1>
+    <p id="successBody" data-i18n="playSuccessBody"></p>
+    <p class="ref" id="successRef"></p>
+    <div class="success-actions">
+      <a class="primary" id="whatsAppLink" target="_blank" rel="noopener" data-i18n="successWhatsApp"></a>
+      <button type="button" class="linkish" id="againBtn" data-i18n="successAgain"></button>
+    </div>
+    <div class="footer-bar">
+      <span data-i18n="contactFooter"></span>
+      <div class="footer-contacts">
+        <b class="footerPhoneCopy"></b>
+        <a class="footerEmailCopy" href="mailto:pinecliffs@annabelcrofttennis.com">pinecliffs@annabelcrofttennis.com</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/form-common.js"></script>
+  <script src="js/play.js"></script>
+</body>
+</html>

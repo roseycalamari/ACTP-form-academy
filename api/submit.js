@@ -1,4 +1,4 @@
-const { newRow } = require("../lib/data");
+const { newRow, isComplete } = require("../lib/data");
 const { append } = require("../lib/store");
 const { readJson } = require("../lib/http");
 
@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
       return;
     }
     const saved = newRow(raw);
-    if (!saved.studentName || !saved.parentName || !saved.phone || !saved.sport || !saved.slots.length) {
+    if (!isComplete(saved)) {
       res.status(400).json({ ok: false, error: "missing fields" });
       return;
     }
