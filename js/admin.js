@@ -125,6 +125,7 @@
         });
         const td = document.createElement("td");
         td.className = "heat-cell " + heatClass(total);
+        td.setAttribute("data-day", DAY_SHORT[day] || day);
         if (!total) {
           td.textContent = "·";
         } else {

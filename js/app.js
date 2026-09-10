@@ -33,6 +33,15 @@
     });
     refreshChoiceSelects();
     refreshSummary();
+    relabelGrid();
+  }
+
+  function relabelGrid() {
+    document.querySelectorAll("#slotGrid td.cell").forEach(function (td) {
+      const input = td.querySelector('input[name="slots"]');
+      if (!input) return;
+      td.setAttribute("data-day", t(input.value.split("-")[0]));
+    });
   }
 
   function buildGrid() {
@@ -47,6 +56,7 @@
       SLOTS.days.forEach(function (day) {
         const td = document.createElement("td");
         td.className = "cell";
+        td.setAttribute("data-day", t(day));
         const id = day + "-" + time.id;
         td.innerHTML =
           '<label class="slot">' +
