@@ -45,11 +45,14 @@
 
     <div class="form-error" id="storeBanner">As fichas da internet ainda não estão a ser gravadas. No Vercel: Storage → Upstash Redis (grátis) → ligar a este projeto → Redeploy. Depois volte a submeter o formulário.</div>
 
-    <div class="admin-tabs" role="tablist">
-      <button type="button" role="tab" data-tab="academy" aria-selected="true">Aulas</button>
-      <button type="button" role="tab" data-tab="social" aria-selected="false">Social</button>
-      <button type="button" role="tab" data-tab="play" aria-selected="false">Play Membership</button>
-    </div>
+    <label class="dept-field" style="margin:0 0 18px;max-width:420px">
+      <span class="dept-label">Departamento</span>
+      <select id="adminDept" class="dept-select">
+        <option value="academy">Aulas</option>
+        <option value="social">Social fim-de-semana</option>
+        <option value="play">Play Membership</option>
+      </select>
+    </label>
 
     <div class="stats">
       <div class="stat"><b id="statTotal">0</b><span id="statTotalLabel">Fichas</span></div>

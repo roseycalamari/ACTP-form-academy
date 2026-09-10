@@ -51,34 +51,54 @@ body { padding: 28px 16px 48px; }
 .nav-links span:nth-child(2) { text-align: center; }
 .nav-links span:nth-child(3) { text-align: right; margin-right: -0.28em; }
 
-.page-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  margin: 0 0 12px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.page-nav a {
-  color: #111;
-  text-decoration: none;
-  border-bottom: 1.5px solid transparent;
-  padding-bottom: 2px;
-}
-
-.page-nav a.is-current {
-  border-bottom-color: #111;
-}
-
 .lang-row {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
   margin: 0 0 14px;
+}
+
+.dept-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.dept-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #555;
+}
+
+.dept-select {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1.4px solid #111;
+  background: #fff;
+  color: #111;
+  padding: 8px 10px;
+  min-height: 40px;
+  width: 100%;
+  max-width: 340px;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.lang-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .lang-row-label {
@@ -927,13 +947,18 @@ body.done .success { display: block; }
     padding: 28px 16px 40px;
   }
   .top-nav { font-size: 9px; letter-spacing: 0.16em; margin-bottom: 8px; }
-  .page-nav { font-size: 9px; gap: 8px 12px; }
   .admin-tabs button { font-size: 9px; padding: 11px 4px; letter-spacing: 0.04em; }
   .nav-links span:nth-child(3) { margin-right: 0; }
   .lang-row {
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 12px;
+  }
+  .dept-select {
+    max-width: none;
+    min-height: 44px;
+    font-size: 16px;
   }
   .langs button {
     min-width: 52px;

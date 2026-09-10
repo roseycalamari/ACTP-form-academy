@@ -375,9 +375,8 @@
 
   function render() {
     const items = ofKind(allItems, currentTab);
-    document.querySelectorAll(".admin-tabs button").forEach(function (btn) {
-      btn.setAttribute("aria-selected", String(btn.getAttribute("data-tab") === currentTab));
-    });
+    const deptSel = document.getElementById("adminDept");
+    if (deptSel) deptSel.value = currentTab;
     document.getElementById("panelAcademy").classList.toggle("is-hidden", currentTab !== "academy");
     document.getElementById("panelSocial").classList.toggle("is-hidden", currentTab !== "social");
     document.getElementById("panelPlay").classList.toggle("is-hidden", currentTab !== "play");
@@ -475,11 +474,9 @@
     });
   });
 
-  document.querySelectorAll(".admin-tabs button").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      currentTab = btn.getAttribute("data-tab");
-      render();
-    });
+  document.getElementById("adminDept").addEventListener("change", function () {
+    currentTab = this.value;
+    render();
   });
 
   api("/api/submissions")

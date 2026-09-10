@@ -111,11 +111,22 @@
     window.scrollTo(0, 0);
   }
 
+  function bindDeptSelect() {
+    document.querySelectorAll(".dept-select").forEach(function (sel) {
+      if (sel.getAttribute("data-bound") || sel.id === "adminDept") return;
+      sel.setAttribute("data-bound", "1");
+      sel.addEventListener("change", function () {
+        if (sel.value) location.href = sel.value;
+      });
+    });
+  }
+
   w.ACTP_FORM = {
     t: t,
     guessLang: guessLang,
     applyLang: applyLang,
     bindLang: bindLang,
+    bindDeptSelect: bindDeptSelect,
     fillFooter: fillFooter,
     radioVal: radioVal,
     checkedList: checkedList,
@@ -125,4 +136,6 @@
     setWhatsApp: setWhatsApp,
     showSuccess: showSuccess
   };
+
+  bindDeptSelect();
 })(window);
