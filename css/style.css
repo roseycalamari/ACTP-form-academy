@@ -6,6 +6,8 @@
   --footer: #c8c8c8;
   --sheet-bg: #dcdcdc;
   --focus: #111;
+  color-scheme: light only;
+  supported-color-schemes: light;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,6 +15,7 @@
 html, body {
   background: var(--sheet-bg);
   color: var(--ink);
+  color-scheme: light only;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
@@ -20,6 +23,30 @@ html, body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+input, select, textarea, button {
+  color-scheme: light;
+}
+
+.field input,
+.field select,
+.field textarea,
+.dept-select {
+  background-color: #fff;
+  color: #111;
+  -webkit-text-fill-color: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background: var(--sheet-bg);
+    color: var(--ink);
+  }
+  .sheet, .success, .login {
+    background: #fff;
+    color: #111;
+  }
 }
 
 body { padding: 28px 16px 48px; }
@@ -267,7 +294,7 @@ h2 {
   height: 36px;
   font-family: inherit;
   font-size: 16px;
-  background: transparent;
+  background: #fff;
   color: #111;
   outline: none;
 }
