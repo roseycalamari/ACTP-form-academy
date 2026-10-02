@@ -17,6 +17,7 @@ module.exports = async function handler(req, res) {
     const items = ofKind(await readAll(), kind);
     const names = {
       academy: "actp-aulas.csv",
+      adults: "actp-aulas-adultos.csv",
       social: "actp-social.csv",
       play: "actp-play-membership.csv"
     };

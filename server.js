@@ -105,6 +105,7 @@ function serveStatic(req, res, urlPath) {
   if (rel === "/admin") rel = "/admin.html";
   if (rel === "/social") rel = "/social.html";
   if (rel === "/play") rel = "/play.html";
+  if (rel === "/adults") rel = "/adults.html";
   const file = path.normalize(path.join(ROOT, rel));
   if (!file.startsWith(ROOT)) return send(res, 403, "Forbidden");
   if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) return send(res, 404, "Not found");
@@ -162,7 +163,7 @@ const server = http.createServer(async function (req, res) {
       if (!isAdmin(req)) return send(res, 401, "Unauthorized");
       const kind = url.searchParams.get("kind") || "academy";
       const csv = toCsv(ofKind(readAll(), kind));
-      const names = { academy: "actp-aulas.csv", social: "actp-social.csv", play: "actp-play-membership.csv" };
+      const names = { academy: "actp-aulas.csv", adults: "actp-aulas-adultos.csv", social: "actp-social.csv", play: "actp-play-membership.csv" };
       return send(res, 200, csv, {
         "Content-Type": "text/csv; charset=utf-8",
         "Content-Disposition": "attachment; filename=" + (names[kind] || "actp.csv")
@@ -181,6 +182,7 @@ server.listen(PORT, function () {
   console.log("ACTP availability form:  http://localhost:" + PORT);
   console.log("Weekend social:          http://localhost:" + PORT + "/social");
   console.log("Play membership:         http://localhost:" + PORT + "/play");
+  console.log("Adult lessons:           http://localhost:" + PORT + "/adults");
   console.log("Team inbox:              http://localhost:" + PORT + "/admin");
   console.log("Admin password:          " + (process.env.ACTP_ADMIN_PASSWORD ? "(from ACTP_ADMIN_PASSWORD)" : "adminruben"));
   console.log("Saved to:                " + DATA_FILE);

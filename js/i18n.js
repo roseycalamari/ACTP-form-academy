@@ -6,7 +6,8 @@ window.ACTP_I18N = {
     social: "Social",
     pineCliffs: "Pine Cliffs",
     navDept: "Departamento",
-    navAulas: "Aulas",
+    navAulas: "Aulas crianças",
+    navAdults: "Aulas adultos",
     navSocial: "Social fim-de-semana",
     navPlay: "Play Membership",
     brand: "Annabel Croft",
@@ -112,6 +113,44 @@ window.ACTP_I18N = {
     successRef: "Referência",
     placeholderChoice: "Marque horários acima primeiro",
 
+    titleAdult: "ACTP · Disponibilidade de aulas · Adultos",
+    adultNoCommitKicker: "Sem compromisso · apenas informação",
+    adultNoCommit:
+      "Isto não é uma inscrição definitiva nem um pagamento. Basta preencher para nos dar informação — assim conseguimos formar turmas de adultos. Só confirmamos o lugar (e só se paga) quando a turma fechar, com 4 alunos.",
+    adultLead:
+      "Aulas de ténis e padel para adultos no Pine Cliffs. Diga-nos quando pode vir — as turmas formam-se a partir da vossa disponibilidade.",
+    adultWhenTitle: "Aulas de segunda a sexta · só a partir das 18h30",
+    adultWhenSub: "Das 18h30 às 21h30 · a última sessão é das 20h30 às 21h30",
+    adultInfo: "Os seus dados",
+    adultName: "Nome",
+    adultAge: "Idade (opcional)",
+    adultGenderTitle: "Mulher ou homem?",
+    genderFemale: "Mulher",
+    genderMale: "Homem",
+    adultTimesTitle: "Quantas vezes por semana pode vir?",
+    adultTimesHint:
+      "Marque a opção mais realista. Pode indicar disponibilidade em mais dias do que as vezes por semana.",
+    adultTennisLevelTitle: "Nível de ténis",
+    adultTennisLevelHint: "Escolha o nível mais próximo. Ajuda-nos a formar turmas equilibradas.",
+    adultPadelLevelTitle: "Nível de padel (se marcou padel)",
+    adultBeginner: "Iniciante",
+    adultIntermediate: "Intermédio",
+    adultAdvanced: "Avançado",
+    adultGridHint:
+      "Marque todas as combinações dia + hora possíveis a partir das 18h30 — não só a preferida. Assim formamos turmas.",
+    adultHowBody:
+      "Abrimos estes horários a todos os adultos. Quando uma turma chega a 4 alunos, fechamos esse dia e hora e confirmamos por WhatsApp. Só paga quando o lugar estiver confirmado.",
+    adultNotesPlaceholder: "Alguma informação extra que nos ajude a formar a turma…",
+    adultConfirmLabel:
+      "Confirmo que estes dados estão corretos. Percebo que isto não é um compromisso — só serve para informação, e só pago se o lugar for confirmado.",
+    adultPriceNote:
+      "Turmas de adultos a partir de 4 alunos. Confirmação e pagamento quando a turma fechar.",
+    adultSuccessTitle: "Obrigado — sem compromisso.",
+    adultSuccessBody:
+      "Já temos a sua disponibilidade. Vamos formar turmas a partir destas respostas e contactamos por WhatsApp quando houver lugar. Não precisa de pagar nada agora.",
+    errAdultGender: "Indique se é mulher ou homem.",
+    errAdultTimes: "Indique quantas vezes por semana pode vir.",
+
     titleSocial: "ACTP · Social fim-de-semana",
     socialKicker: "Sem compromisso · apenas interesse",
     socialNoCommit:
@@ -171,7 +210,8 @@ window.ACTP_I18N = {
     social: "Social",
     pineCliffs: "Pine Cliffs",
     navDept: "Department",
-    navAulas: "Lessons",
+    navAulas: "Kids lessons",
+    navAdults: "Adult lessons",
     navSocial: "Weekend social",
     navPlay: "Play Membership",
     brand: "Annabel Croft",
@@ -277,6 +317,44 @@ window.ACTP_I18N = {
     successRef: "Reference",
     placeholderChoice: "Check time slots above first",
 
+    titleAdult: "ACTP · Lesson availability · Adults",
+    adultNoCommitKicker: "No commitment · information only",
+    adultNoCommit:
+      "This is not a final enrolment and not a payment. Fill it in so we have information — that is how we form adult classes. We only confirm the spot (and payment only happens) when the class closes, with 4 players.",
+    adultLead:
+      "Adult tennis and padel lessons at Pine Cliffs. Tell us when you can come — we build classes from your availability.",
+    adultWhenTitle: "Monday to Friday · from 18:30 only",
+    adultWhenSub: "From 18:30 to 21:30 · the last session is 20:30 to 21:30",
+    adultInfo: "Your details",
+    adultName: "Name",
+    adultAge: "Age (optional)",
+    adultGenderTitle: "Female or male?",
+    genderFemale: "Female",
+    genderMale: "Male",
+    adultTimesTitle: "How many times a week can you come?",
+    adultTimesHint:
+      "Select the most realistic option. You can indicate availability on more days than the number of times per week.",
+    adultTennisLevelTitle: "Tennis level",
+    adultTennisLevelHint: "Pick the closest level. It helps us form balanced classes.",
+    adultPadelLevelTitle: "Padel level (if you ticked padel)",
+    adultBeginner: "Beginner",
+    adultIntermediate: "Intermediate",
+    adultAdvanced: "Advanced",
+    adultGridHint:
+      "Tick every possible day + time from 18:30 — not just the preferred one. That is how we form classes.",
+    adultHowBody:
+      "We open these time slots to all adults. When a class reaches 4 players, we close that day and time and confirm it via WhatsApp. You only pay once your spot is confirmed.",
+    adultNotesPlaceholder: "Anything else that helps us form the class…",
+    adultConfirmLabel:
+      "I confirm this information is correct. I understand this is not a commitment — it is only for information, and I only pay if a spot is confirmed.",
+    adultPriceNote:
+      "Adult classes start with 4 players. Confirmation and payment once the class closes.",
+    adultSuccessTitle: "Thank you — no commitment.",
+    adultSuccessBody:
+      "We have your availability. We will form classes from these answers and contact you on WhatsApp when there is a spot. You do not need to pay anything now.",
+    errAdultGender: "Please say if you are female or male.",
+    errAdultTimes: "Please say how many times a week you can come.",
+
     titleSocial: "ACTP · Weekend social",
     socialKicker: "No commitment · interest only",
     socialNoCommit:
@@ -336,6 +414,15 @@ window.ACTP_SLOTS = {
   times: [
     { id: "1630", label: "16h30 – 17h30" },
     { id: "1730", label: "17h30 – 18h30" },
+    { id: "1830", label: "18h30 – 19h30" },
+    { id: "1930", label: "19h30 – 20h30" },
+    { id: "2030", label: "20h30 – 21h30" }
+  ]
+};
+
+window.ACTP_ADULT_SLOTS = {
+  days: ["mon", "tue", "wed", "thu", "fri"],
+  times: [
     { id: "1830", label: "18h30 – 19h30" },
     { id: "1930", label: "19h30 – 20h30" },
     { id: "2030", label: "20h30 – 21h30" }

@@ -1,5 +1,6 @@
 (function () {
   const SLOTS = window.ACTP_SLOTS;
+  const ADULT_SLOTS = window.ACTP_ADULT_SLOTS;
   const loginBox = document.getElementById("loginBox");
   const adminSheet = document.getElementById("adminSheet");
   const loginError = document.getElementById("loginError");
@@ -22,10 +23,13 @@
     beginner: "Iniciante",
     intermediate: "Intermédio",
     teens: "Adolescentes",
+    advanced: "Avançado",
     same: "Mesmos horários",
     different: "Horários diferentes",
     girl: "Menina",
     boy: "Menino",
+    female: "Mulher",
+    male: "Homem",
     sat: "Sábado",
     sun: "Domingo",
     morning: "Manhã",
@@ -81,7 +85,7 @@
 
   function nameWithGender(name, gender) {
     if (!name) return "";
-    if (gender === "girl" || gender === "boy") return name + " (" + labels[gender] + ")";
+    if (labels[gender]) return name + " (" + labels[gender] + ")";
     return name;
   }
 
@@ -255,6 +259,169 @@
     });
   }
 
+  function adultLevel(row, sport) {
+    const raw = sport === "padel" ? row.padelLevel : row.tennisLevel;
+    if (raw === "beginner" || raw === "intermediate" || raw === "advanced") return raw;
+    return "unknown";
+  }
+
+  function adultGroupKey(sport, gender, level) {
+    const g = gender === "male" ? "male" : "female";
+    return sport + "-" + g + "-" + level;
+  }
+
+  function adultGroupLabel(key) {
+    const parts = String(key).split("-");
+    const sport = parts[0] === "padel" ? "Padel" : "Ténis";
+    const who = parts[1] === "male" ? "homens" : "mulheres";
+    const level = parts[2] === "unknown" ? "nível por confirmar" : (labels[parts[2]] || parts[2]);
+    return sport + " · " + who + " · " + level;
+  }
+
+  function adultLevelWord(value) {
+    if (!value) return "";
+    if (value === "unknown") return "Não sei";
+    return labels[value] || value;
+  }
+
+  function renderAdults(items) {
+    document.getElementById("statTotal").textContent = String(items.length);
+    const women = items.filter(function (r) { return r.gender === "female"; }).length;
+    const men = items.filter(function (r) { return r.gender === "male"; }).length;
+    document.getElementById("statKids").textContent = String(women);
+    document.getElementById("statKidsLabel").textContent = "Mulheres";
+    document.getElementById("statReady").textContent = String(men);
+    document.getElementById("statReadyLabel").textContent = "Homens";
+
+    const emptyCell = function () {
+      return { tf: 0, tm: 0, pf: 0, pm: 0 };
+    };
+    const bySlot = {};
+    ADULT_SLOTS.times.forEach(function (time) {
+      ADULT_SLOTS.days.forEach(function (day) {
+        bySlot[day + "-" + time.id] = emptyCell();
+      });
+    });
+
+    const groupCounts = {};
+    const namesByKey = {};
+    items.forEach(function (row) {
+      const gender = row.gender === "male" ? "male" : "female";
+      const heatG = gender === "male" ? "m" : "f";
+      const sports = [];
+      if (row.sport === "tennis" || row.sport === "both") sports.push("tennis");
+      if (row.sport === "padel" || row.sport === "both") sports.push("padel");
+      (row.slots || []).forEach(function (slot) {
+        if (!bySlot[slot]) return;
+        sports.forEach(function (sport) {
+          const heatKey = (sport === "padel" ? "p" : "t") + heatG;
+          bySlot[slot][heatKey] += 1;
+          const gkey = adultGroupKey(sport, gender, adultLevel(row, sport));
+          const mapKey = gkey + "|" + slot;
+          groupCounts[mapKey] = (groupCounts[mapKey] || 0) + 1;
+          namesByKey[mapKey] = (namesByKey[mapKey] || []).concat([nameWithGender(row.studentName, row.gender)]);
+        });
+      });
+    });
+
+    const tbody = document.querySelector("#heatTableAdults tbody");
+    tbody.innerHTML = "";
+    ADULT_SLOTS.times.forEach(function (time) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = '<td class="t">' + time.label + "</td>";
+      ADULT_SLOTS.days.forEach(function (day) {
+        const key = day + "-" + time.id;
+        const cell = bySlot[key];
+        const total = cell.tf + cell.tm + cell.pf + cell.pm;
+        const td = document.createElement("td");
+        td.className = "heat-cell " + heatClass(total);
+        td.setAttribute("data-day", DAY_SHORT[day] || day);
+        if (!total) {
+          td.textContent = "·";
+        } else {
+          const chips = [];
+          if (cell.tf) chips.push('<span class="heat-chip female">T ♀ ' + cell.tf + "</span>");
+          if (cell.tm) chips.push('<span class="heat-chip male">T ♂ ' + cell.tm + "</span>");
+          if (cell.pf) chips.push('<span class="heat-chip female">P ♀ ' + cell.pf + "</span>");
+          if (cell.pm) chips.push('<span class="heat-chip male">P ♂ ' + cell.pm + "</span>");
+          td.innerHTML = chips.join("");
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+
+    const graphRows = Object.keys(groupCounts).map(function (mapKey) {
+      const parts = mapKey.split("|");
+      return { ball: parts[0], slot: parts[1], count: groupCounts[mapKey] };
+    });
+
+    const orderSport = { tennis: 0, padel: 1 };
+    const orderGender = { female: 0, male: 1 };
+    const orderLevel = { beginner: 0, intermediate: 1, advanced: 2, unknown: 3 };
+    const dayOrder = { mon: 0, tue: 1, wed: 2, thu: 3, fri: 4 };
+    graphRows.sort(function (a, b) {
+      const ap = a.ball.split("-");
+      const bp = b.ball.split("-");
+      if (orderSport[ap[0]] !== orderSport[bp[0]]) return (orderSport[ap[0]] || 9) - (orderSport[bp[0]] || 9);
+      if (orderGender[ap[1]] !== orderGender[bp[1]]) return (orderGender[ap[1]] || 9) - (orderGender[bp[1]] || 9);
+      if (orderLevel[ap[2]] !== orderLevel[bp[2]]) return (orderLevel[ap[2]] || 9) - (orderLevel[bp[2]] || 9);
+      const ad = a.slot.split("-")[0];
+      const bd = b.slot.split("-")[0];
+      if (dayOrder[ad] !== dayOrder[bd]) return dayOrder[ad] - dayOrder[bd];
+      return a.slot.localeCompare(b.slot);
+    });
+
+    const graph = document.getElementById("adultGraph");
+    const graphEmpty = document.getElementById("adultGraphEmpty");
+    graph.innerHTML = "";
+    graphEmpty.classList.toggle("is-hidden", graphRows.length > 0);
+
+    const groups = [];
+    graphRows.forEach(function (row) {
+      const last = groups[groups.length - 1];
+      if (!last || last.ball !== row.ball) groups.push({ ball: row.ball, rows: [row] });
+      else last.rows.push(row);
+    });
+
+    groups.forEach(function (group) {
+      const size = 4;
+      const box = document.createElement("section");
+      const genderClass = group.ball.indexOf("-male-") >= 0 ? "male" : "female";
+      box.className = "turma-group " + genderClass;
+      const readyCount = group.rows.filter(function (row) { return row.count >= size; }).length;
+      box.innerHTML =
+        '<header class="turma-head">' +
+          "<div><strong>" + escapeHtml(adultGroupLabel(group.ball)) + "</strong>" +
+          "<span>" + group.rows.length + (group.rows.length === 1 ? " horário" : " horários") +
+          (readyCount ? " · " + readyCount + " pronto" + (readyCount > 1 ? "s" : "") : "") +
+          " · fecha com " + size +
+          "</span></div>" +
+        "</header>";
+      group.rows.forEach(function (row) {
+        const parts = row.slot.split("-");
+        const time = ADULT_SLOTS.times.find(function (item) { return item.id === parts[1]; });
+        const names = namesByKey[row.ball + "|" + row.slot] || [];
+        const line = document.createElement("div");
+        const isReady = row.count >= size;
+        line.className = "turma-line" + (isReady ? " ready" : "");
+        const pips = [];
+        for (let i = 0; i < size; i += 1) {
+          pips.push('<i class="pip' + (i < Math.min(row.count, size) ? " on" : "") + '"></i>');
+        }
+        line.innerHTML =
+          '<div class="turma-when"><b>' + escapeHtml(DAY_LONG[parts[0]] || parts[0]) + "</b>" +
+          "<span>" + escapeHtml(time ? time.label : parts[1]) + "</span></div>" +
+          '<div class="turma-pips" aria-hidden="true">' + pips.join("") + "</div>" +
+          '<div class="turma-count"><b>' + row.count + "</b><span>/ " + size + "</span></div>" +
+          (names.length ? '<p class="turma-names">' + escapeHtml(names.join(" · ")) + "</p>" : "") +
+          (isReady ? '<span class="turma-ready">Pronto a fechar</span>' : "");
+        box.appendChild(line);
+      });
+      graph.appendChild(box);
+    });
+  }
+
   function weekendLabel(row) {
     return (row.weekendDays || []).map(function (d) { return labels[d] || d; }).join(" + ");
   }
@@ -292,6 +459,23 @@
       field("Nível ténis", labels[row.tennisLevel] || row.tennisLevel) +
       field("Nível padel", labels[row.padelLevel] || row.padelLevel) +
       field("2.º filho", [row.child2Name, row.child2Age, labels[row.child2Gender] || row.child2Gender, labels[row.child2Schedule] || row.child2Schedule].filter(Boolean).join(" · ")) +
+      field("Notas", row.notes) +
+      field("Idioma", row.language) +
+      field("Ref", row.id)
+    );
+  }
+
+  function adultFields(row) {
+    return (
+      field("Idade", row.age) +
+      field("Mulher / homem", labels[row.gender] || row.gender) +
+      field("Email", row.email) +
+      field("Vezes / semana", labels[row.timesPerWeek] || row.timesPerWeek) +
+      field("Horários", (row.slots || []).map(slotLabel).join("; ")) +
+      field("1.ª escolha", slotLabel(row.firstChoice)) +
+      field("2.ª escolha", slotLabel(row.secondChoice)) +
+      field("Nível ténis", adultLevelWord(row.tennisLevel)) +
+      field("Nível padel", adultLevelWord(row.padelLevel)) +
       field("Notas", row.notes) +
       field("Idioma", row.language) +
       field("Ref", row.id)
@@ -338,6 +522,11 @@
         summary = (labels[row.sport] || row.sport || "") +
           (row.tennisLevel && row.sport !== "padel" ? " · " + (labels[row.tennisLevel] || row.tennisLevel) : "") +
           " · " + when;
+      } else if (currentTab === "adults") {
+        summary = (labels[row.sport] || row.sport || "") +
+          (row.tennisLevel && row.sport !== "padel" ? " · " + adultLevelWord(row.tennisLevel) : "") +
+          (row.padelLevel && row.sport !== "tennis" ? " · padel " + adultLevelWord(row.padelLevel) : "") +
+          " · " + when;
       } else if (currentTab === "social") {
         summary = (labels[row.sport] || row.sport || "") +
           (weekendLabel(row) ? " · " + weekendLabel(row) : "") +
@@ -349,8 +538,12 @@
       }
       const extra = currentTab === "academy"
         ? (labels[row.gender] || "") + (row.gender && row.age ? " · " : "") + (row.age ? row.age + " anos" : "") + (row.parentName ? " · " + row.parentName : "") + (row.phone ? " · " + row.phone : "")
-        : (row.phone || "");
-      const details = currentTab === "academy" ? academyFields(row) : (currentTab === "social" ? socialFields(row) : playFields(row));
+        : currentTab === "adults"
+          ? (labels[row.gender] || "") + (row.age ? " · " + row.age + " anos" : "") + (row.phone ? " · " + row.phone : "")
+          : (row.phone || "");
+      const details = currentTab === "academy"
+        ? academyFields(row)
+        : (currentTab === "adults" ? adultFields(row) : (currentTab === "social" ? socialFields(row) : playFields(row)));
       card.innerHTML =
         '<div class="sub-top">' +
           '<button type="button" class="sub-head">' +
@@ -378,6 +571,7 @@
     const deptSel = document.getElementById("adminDept");
     if (deptSel) deptSel.value = currentTab;
     document.getElementById("panelAcademy").classList.toggle("is-hidden", currentTab !== "academy");
+    document.getElementById("panelAdults").classList.toggle("is-hidden", currentTab !== "adults");
     document.getElementById("panelSocial").classList.toggle("is-hidden", currentTab !== "social");
     document.getElementById("panelPlay").classList.toggle("is-hidden", currentTab !== "play");
     document.getElementById("csvLink").href = "/api/export.csv?kind=" + currentTab;
@@ -387,6 +581,11 @@
       document.getElementById("brandSub").textContent = "Respostas das famílias · sem compromisso";
       document.getElementById("listTitle").textContent = "Famílias";
       renderAcademy(items);
+    } else if (currentTab === "adults") {
+      document.getElementById("brandTitle").textContent = "Aulas adultos";
+      document.getElementById("brandSub").textContent = "A partir das 18h30 · mulher ou homem";
+      document.getElementById("listTitle").textContent = "Adultos";
+      renderAdults(items);
     } else if (currentTab === "social") {
       document.getElementById("brandTitle").textContent = "Social fim-de-semana";
       document.getElementById("brandSub").textContent = "Interessados em jogar ao sábado e domingo";

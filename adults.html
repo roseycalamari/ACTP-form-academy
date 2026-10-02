@@ -7,8 +7,8 @@
   <meta name="supported-color-schemes" content="light" />
   <meta name="theme-color" content="#ffffff" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#ffffff" />
-  <title>ACTP · Play Membership</title>
-  <meta name="description" content="Play Membership — quem já joga, sem aulas. Annabel Croft Tennis & Padel, Pine Cliffs." />
+  <title>ACTP · Disponibilidade de aulas · Adultos</title>
+  <meta name="description" content="Ficha de disponibilidade para adultos — Annabel Croft Tennis & Padel, Pine Cliffs. Sem compromisso. Aulas a partir das 18h30." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -25,9 +25,9 @@
         <span class="dept-label" data-i18n="navDept">Departamento</span>
         <select class="dept-select">
           <option value="/" data-i18n="navAulas">Aulas crianças</option>
-          <option value="/adults" data-i18n="navAdults">Aulas adultos</option>
+          <option value="/adults" selected data-i18n="navAdults">Aulas adultos</option>
           <option value="/social" data-i18n="navSocial">Social fim-de-semana</option>
-          <option value="/play" selected data-i18n="navPlay">Play Membership</option>
+          <option value="/play" data-i18n="navPlay">Play Membership</option>
         </select>
       </label>
       <div class="lang-switch">
@@ -45,30 +45,34 @@
     <hr class="rule" />
 
     <div class="banner">
-      <strong data-i18n="playKicker">Play only · sem aulas</strong>
-      <p data-i18n="playNoCommit"></p>
+      <strong data-i18n="adultNoCommitKicker">Sem compromisso · apenas informação</strong>
+      <p data-i18n="adultNoCommit"></p>
     </div>
 
     <p class="lead">
-      <span data-i18n="playLead"></span>
+      <span data-i18n="adultLead"></span>
       <strong data-i18n="season"></strong>
     </p>
 
     <div class="when">
-      <span class="when-title" data-i18n="playWhenTitle"></span>
-      <span data-i18n="playWhenSub"></span>
+      <span class="when-title" data-i18n="adultWhenTitle"></span>
+      <span data-i18n="adultWhenSub"></span>
     </div>
 
     <hr class="rule" />
 
-    <form id="playForm" novalidate>
+    <form id="availabilityForm" novalidate>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" />
 
-      <h2 data-i18n="socialInfo">Os seus dados</h2>
+      <h2 data-i18n="adultInfo"></h2>
       <div class="fields">
         <div class="field">
-          <label for="studentName" data-i18n="socialName"></label>
+          <label for="studentName" data-i18n="adultName"></label>
           <input id="studentName" name="studentName" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="age" data-i18n="adultAge"></label>
+          <input id="age" name="age" type="number" min="16" max="99" inputmode="numeric" />
         </div>
         <div class="field">
           <label for="phone" data-i18n="phone"></label>
@@ -79,13 +83,17 @@
           <input id="email" name="email" type="email" autocomplete="email" />
         </div>
       </div>
-
-      <h2 data-i18n="playAlreadyTitle"></h2>
+      <p class="hint" data-i18n="adultGenderTitle"></p>
       <div class="row-choices">
         <label class="choice">
-          <input type="checkbox" name="playsAlready" id="playsAlready" />
+          <input type="radio" name="gender" value="female" />
           <span class="box"></span>
-          <span data-i18n="playAlready"></span>
+          <span data-i18n="genderFemale"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="gender" value="male" />
+          <span class="box"></span>
+          <span data-i18n="genderMale"></span>
         </label>
       </div>
 
@@ -108,41 +116,105 @@
         </label>
       </div>
 
-      <h2 data-i18n="playPlanTitle"></h2>
-      <div class="row-choices row-choices--stack">
+      <h2 data-i18n="adultTimesTitle"></h2>
+      <p class="hint" data-i18n="adultTimesHint"></p>
+      <div class="row-choices">
         <label class="choice">
-          <input type="radio" name="playPlan" value="play" />
+          <input type="radio" name="timesPerWeek" value="1" />
           <span class="box"></span>
-          <span data-i18n="playPlanPlay"></span>
+          <span data-i18n="times1"></span>
         </label>
         <label class="choice">
-          <input type="radio" name="playPlan" value="changing" />
+          <input type="radio" name="timesPerWeek" value="2" />
           <span class="box"></span>
-          <span data-i18n="playPlanChanging"></span>
+          <span data-i18n="times2"></span>
         </label>
         <label class="choice">
-          <input type="radio" name="playPlan" value="gym" />
+          <input type="radio" name="timesPerWeek" value="3" />
           <span class="box"></span>
-          <span data-i18n="playPlanGym"></span>
+          <span data-i18n="times3"></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="timesPerWeek" value="flexible" />
+          <span class="box"></span>
+          <span data-i18n="timesFlex"></span>
         </label>
       </div>
 
-      <div class="note">
-        <span data-i18n="playIncludes"></span>
+      <section id="tennisLevelBlock">
+        <h2 data-i18n="adultTennisLevelTitle"></h2>
+        <p class="hint" data-i18n="adultTennisLevelHint"></p>
+        <div class="row-choices">
+          <label class="choice"><input type="radio" name="tennisLevel" value="beginner" /><span class="box"></span><span data-i18n="adultBeginner"></span></label>
+          <label class="choice"><input type="radio" name="tennisLevel" value="intermediate" /><span class="box"></span><span data-i18n="adultIntermediate"></span></label>
+          <label class="choice"><input type="radio" name="tennisLevel" value="advanced" /><span class="box"></span><span data-i18n="adultAdvanced"></span></label>
+          <label class="choice"><input type="radio" name="tennisLevel" value="unknown" /><span class="box"></span><span data-i18n="levelUnknown"></span></label>
+        </div>
+      </section>
+
+      <h2 data-i18n="gridTitle"></h2>
+      <p class="hint" data-i18n="adultGridHint"></p>
+      <div class="grid-wrap">
+        <table class="grid" id="slotGrid">
+          <thead>
+            <tr>
+              <th class="t" data-i18n="schedule"></th>
+              <th data-i18n="mon"></th>
+              <th data-i18n="tue"></th>
+              <th data-i18n="wed"></th>
+              <th data-i18n="thu"></th>
+              <th data-i18n="fri"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
+      <p class="live" id="slotSummary"></p>
+
+      <div class="note">
+        <strong data-i18n="howTitle"></strong>
+        <span data-i18n="adultHowBody"></span>
+      </div>
+
+      <h2 data-i18n="prefTitle"></h2>
+      <p class="hint" data-i18n="prefHint"></p>
+      <div class="fields">
+        <div class="field">
+          <label for="firstChoice" data-i18n="firstChoice"></label>
+          <select id="firstChoice" name="firstChoice"></select>
+        </div>
+        <div class="field">
+          <label for="secondChoice" data-i18n="secondChoice"></label>
+          <select id="secondChoice" name="secondChoice"></select>
+        </div>
+      </div>
+
+      <section id="padelLevelBlock" class="is-hidden">
+        <h2 data-i18n="adultPadelLevelTitle"></h2>
+        <div class="row-choices">
+          <label class="choice"><input type="radio" name="padelLevel" value="beginner" /><span class="box"></span><span data-i18n="adultBeginner"></span></label>
+          <label class="choice"><input type="radio" name="padelLevel" value="intermediate" /><span class="box"></span><span data-i18n="adultIntermediate"></span></label>
+          <label class="choice"><input type="radio" name="padelLevel" value="advanced" /><span class="box"></span><span data-i18n="adultAdvanced"></span></label>
+          <label class="choice"><input type="radio" name="padelLevel" value="unknown" /><span class="box"></span><span data-i18n="levelUnknown"></span></label>
+        </div>
+      </section>
 
       <h2 data-i18n="notes"></h2>
       <div class="field">
-        <textarea id="notes" name="notes" rows="4" data-i18n-placeholder="playNotesPlaceholder"></textarea>
+        <textarea id="notes" name="notes" rows="4" data-i18n-placeholder="adultNotesPlaceholder"></textarea>
       </div>
 
       <label class="confirm">
         <input type="checkbox" name="confirmed" id="confirmed" required />
-        <span data-i18n="playConfirm"></span>
+        <span data-i18n="adultConfirmLabel"></span>
       </label>
 
       <div class="form-error" id="formError" role="alert"></div>
-      <button class="submit" type="submit" data-i18n="playSubmit"></button>
+      <button class="submit" type="submit" data-i18n="submit"></button>
+
+      <div class="note" style="margin-top:18px">
+        <span data-i18n="adultPriceNote"></span>
+      </div>
     </form>
 
     <div class="footer-bar">
@@ -166,17 +238,17 @@
       <span class="dept-label" data-i18n="navDept">Departamento</span>
       <select class="dept-select">
         <option value="/" data-i18n="navAulas">Aulas crianças</option>
-        <option value="/adults" data-i18n="navAdults">Aulas adultos</option>
+        <option value="/adults" selected data-i18n="navAdults">Aulas adultos</option>
         <option value="/social" data-i18n="navSocial">Social fim-de-semana</option>
-        <option value="/play" selected data-i18n="navPlay">Play Membership</option>
+        <option value="/play" data-i18n="navPlay">Play Membership</option>
       </select>
     </label>
     <div class="logo logo--sm">
       <img src="ACTPLogo.png" alt="Annabel Croft Tennis &amp; Padel" width="2615" height="713" />
     </div>
     <p class="kicker" data-i18n="successKicker"></p>
-    <h1 data-i18n="playSuccessTitle"></h1>
-    <p id="successBody" data-i18n="playSuccessBody"></p>
+    <h1 data-i18n="adultSuccessTitle"></h1>
+    <p id="successBody" data-i18n="adultSuccessBody"></p>
     <p class="ref" id="successRef"></p>
     <div class="success-actions">
       <a class="primary" id="whatsAppLink" target="_blank" rel="noopener" data-i18n="successWhatsApp"></a>
@@ -194,6 +266,6 @@
   <script src="js/config.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/form-common.js"></script>
-  <script src="js/play.js"></script>
+  <script src="js/adults.js"></script>
 </body>
 </html>

@@ -881,6 +881,20 @@ body.done .success { display: block; }
 .turma-group.yellow .turma-head .ball-dot { border-color: #111; }
 .turma-group.unknown .turma-head { background: #555; }
 .turma-group.padel .turma-head { background: #111; }
+.turma-group.female .turma-head { background: #555; }
+.turma-group.male .turma-head { background: #111; }
+
+.heat-mark {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1.4px solid #111;
+  border-radius: 50%;
+}
+.heat-mark.female { background: #fff; }
+.heat-mark.male { background: #111; }
+.heat-chip.female { color: #111; }
+.heat-chip.male { color: #111; }
 
 .turma-line {
   display: grid;
