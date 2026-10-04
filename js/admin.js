@@ -34,9 +34,7 @@
     sun: "Domingo",
     morning: "Manhã",
     afternoon: "Tarde",
-    play: "Play · €300",
-    changing: "Balneários · €350",
-    gym: "+ Ginásio"
+    play: "Play · €300"
   };
 
   const GROUPS = ["red", "orange", "green", "yellow12", "yellow13", "unknown"];
@@ -438,12 +436,12 @@
 
   function renderPlay(items) {
     document.getElementById("statTotal").textContent = String(items.length);
-    const play = items.filter(function (r) { return r.playPlan === "play"; }).length;
-    const extra = items.filter(function (r) { return r.playPlan === "changing" || r.playPlan === "gym"; }).length;
-    document.getElementById("statKids").textContent = String(play);
-    document.getElementById("statKidsLabel").textContent = "Play €300";
-    document.getElementById("statReady").textContent = String(extra);
-    document.getElementById("statReadyLabel").textContent = "Balneários / ginásio";
+    const tennis = items.filter(function (r) { return r.sport === "tennis" || r.sport === "both"; }).length;
+    const padel = items.filter(function (r) { return r.sport === "padel" || r.sport === "both"; }).length;
+    document.getElementById("statKids").textContent = String(tennis);
+    document.getElementById("statKidsLabel").textContent = "Ténis";
+    document.getElementById("statReady").textContent = String(padel);
+    document.getElementById("statReadyLabel").textContent = "Padel";
   }
 
   function academyFields(row) {

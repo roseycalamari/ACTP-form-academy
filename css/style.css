@@ -487,6 +487,31 @@ table.grid td.cell { height: 48px; }
 
 .note strong { font-weight: 800; }
 
+.play-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 4px 0 12px;
+}
+.play-facts > div {
+  border: 1.5px solid #111;
+  padding: 12px 12px 10px;
+}
+.play-facts b {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.play-facts span {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.35;
+}
+
 .is-hidden { display: none !important; }
 
 .confirm {
@@ -1014,6 +1039,7 @@ body.done .success { display: block; }
   .when { font-size: 18px; }
   .lead, .banner p, .hint, .note { font-size: 14px; }
   .fields { grid-template-columns: 1fr; gap: 14px; }
+  .play-facts { grid-template-columns: 1fr; }
   .field input,
   .field select,
   .field textarea {

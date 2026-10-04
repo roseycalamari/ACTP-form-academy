@@ -183,25 +183,33 @@ window.ACTP_I18N = {
       "Isto é um pedido de informação / inscrição de interesse. O pagamento e a confirmação do lugar fazem-se depois, com o clube.",
     playLead:
       "Pensada para quem já joga regularmente. Sem aulas incluídas. Ténis e padel durante a época de inverno no Pine Cliffs.",
-    playWhenTitle: "Época de inverno",
-    playWhenSub: "Novembro a Março/Abril · 4 ténis + 4 padel, tudo com luz",
+    playWhenTitle: "Época de inverno · 1 novembro a 31 março",
+    playWhenSub: "€300 · 5 meses · 4 ténis + 4 padel, tudo com luz",
     playAlreadyTitle: "Já joga regularmente?",
     playAlready: "Sim — quero Play Membership, sem aulas",
-    playPlanTitle: "Que membership lhe interessa?",
-    playPlanPlay: "Play · €300 (5 meses · courts de ténis e padel)",
-    playPlanChanging: "Com balneários · €350 (a confirmar)",
-    playPlanGym: "+ Ginásio (a confirmar · preço superior)",
-    playIncludes:
-      "Incluído: até 6h de ténis / semana e 6h de padel / semana, pack de boas-vindas para membros novos, acesso ao resort como membro ACTP. Extra court e visitantes a confirmar.",
+    playIncludesTitle: "O que inclui a Play Membership",
+    playFactPrice: "€300",
+    playFactPriceSub: "Um só preço para os 5 meses · ténis e padel",
+    playFactHours: "6h ténis + 6h padel / semana",
+    playFactHoursSub: "Máximo 2h por dia · as horas não passam para a semana seguinte",
+    playFactCourts: "8 campos com luz",
+    playFactCourtsSub: "4 ténis (terra batida e piso rápido) + 4 padel",
+    playFactPack: "Pack de boas-vindas",
+    playFactPackSub: "T-shirt, chapéu e overgrips para membros novos",
+    playFactNoLessons: "Sem aulas incluídas",
+    playFactNoLessonsSub: "Para quem já joga · só courts, não treinos",
+    playFactPay: "Paga-se a época toda de uma vez",
+    playFactPaySub: "Não há mensalidades · este formulário ainda não é um pagamento",
+    playIncludesHint:
+      "Recebeu este link? É um pedido de interesse. A equipa confirma o lugar por WhatsApp — só depois se paga.",
     playNotesPlaceholder: "Disponibilidade, com quem joga, alguma pergunta…",
     playConfirm:
       "Confirmo que estes dados estão corretos. Percebo que o pagamento só acontece quando o clube confirmar o lugar.",
     playSubmit: "Pedir Play Membership",
     playSuccessTitle: "Obrigado — recebemos o pedido.",
     playSuccessBody:
-      "A equipa contacta por WhatsApp para confirmar o plano e o lugar. Não é preciso pagar agora.",
+      "A equipa contacta por WhatsApp para confirmar o lugar. Não é preciso pagar agora.",
     errPlayAlready: "A Play Membership é para quem já joga — confirme essa opção.",
-    errPlayPlan: "Escolha o plano que lhe interessa."
   },
   en: {
     htmlLang: "en",
@@ -387,25 +395,33 @@ window.ACTP_I18N = {
       "This is a request for information / interest. Payment and confirmation happen afterwards, with the club.",
     playLead:
       "For people who already play regularly. No lessons included. Tennis and padel through the winter season at Pine Cliffs.",
-    playWhenTitle: "Winter season",
-    playWhenSub: "November through March/April · 4 tennis + 4 padel, all lit",
+    playWhenTitle: "Winter season · 1 November to 31 March",
+    playWhenSub: "€300 · 5 months · 4 tennis + 4 padel, all floodlit",
     playAlreadyTitle: "Do you already play regularly?",
     playAlready: "Yes — I want Play Membership, no lessons",
-    playPlanTitle: "Which membership are you interested in?",
-    playPlanPlay: "Play · €300 (5 months · tennis and padel courts)",
-    playPlanChanging: "With changing rooms · €350 (to confirm)",
-    playPlanGym: "+ Gym (to confirm · higher price)",
-    playIncludes:
-      "Included: up to 6h tennis / week and 6h padel / week, welcome pack for new members, resort access as an ACTP member. Extra court and visitors to confirm.",
+    playIncludesTitle: "What Play Membership includes",
+    playFactPrice: "€300",
+    playFactPriceSub: "One price for the 5 months · tennis and padel",
+    playFactHours: "6h tennis + 6h padel / week",
+    playFactHoursSub: "Maximum 2h per day · unused hours do not roll over",
+    playFactCourts: "8 floodlit courts",
+    playFactCourtsSub: "4 tennis (clay and hard) + 4 padel",
+    playFactPack: "Welcome pack",
+    playFactPackSub: "T-shirt, hat and overgrips for new members",
+    playFactNoLessons: "No lessons included",
+    playFactNoLessonsSub: "For people who already play · courts, not coaching",
+    playFactPay: "The whole season is paid at once",
+    playFactPaySub: "No monthly fees · this form is not a payment",
+    playIncludesHint:
+      "Got this link? It is an interest form. The team confirms the spot on WhatsApp — you only pay after that.",
     playNotesPlaceholder: "Availability, who you play with, any question…",
     playConfirm:
       "I confirm this information is correct. I understand payment only happens once the club confirms the spot.",
     playSubmit: "Request Play Membership",
     playSuccessTitle: "Thank you — we have your request.",
     playSuccessBody:
-      "The team will contact you on WhatsApp to confirm the plan and the spot. No payment is needed now.",
+      "The team will contact you on WhatsApp to confirm the spot. No payment is needed now.",
     errPlayAlready: "Play Membership is for people who already play — please confirm that.",
-    errPlayPlan: "Please choose the plan you are interested in."
   }
 };
 

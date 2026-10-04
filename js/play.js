@@ -24,7 +24,7 @@
       email: form.email.value.trim(),
       sport: F.radioVal(form, "sport"),
       playSports: F.radioVal(form, "sport"),
-      playPlan: F.radioVal(form, "playPlan"),
+      playPlan: "play",
       playsAlready: form.playsAlready.checked,
       notes: form.notes.value.trim(),
       confirmed: form.confirmed.checked,
@@ -38,17 +38,8 @@
     if (!F.validEmail(data.email)) return F.t(lang, "errEmail");
     if (!data.playsAlready) return F.t(lang, "errPlayAlready");
     if (!data.sport) return F.t(lang, "errSport");
-    if (!data.playPlan) return F.t(lang, "errPlayPlan");
     if (!data.confirmed) return F.t(lang, "errConfirm");
     return "";
-  }
-
-  function planLabel(value) {
-    return {
-      play: F.t(lang, "playPlanPlay"),
-      changing: F.t(lang, "playPlanChanging"),
-      gym: F.t(lang, "playPlanGym")
-    }[value] || value;
   }
 
   function whatsAppText(data) {
@@ -60,7 +51,7 @@
       "WhatsApp: " + data.phone,
       data.email ? "Email: " + data.email : "",
       (en ? "Sport" : "Modalidade") + ": " + data.sport,
-      (en ? "Plan" : "Plano") + ": " + planLabel(data.playPlan),
+      (en ? "Plan" : "Plano") + ": Play · €300",
       data.notes ? (en ? "Notes" : "Notas") + ": " + data.notes : ""
     ].filter(Boolean).join("\n");
   }

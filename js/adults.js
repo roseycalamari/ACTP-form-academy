@@ -335,7 +335,7 @@
   document.querySelectorAll(".footerPhoneCopy").forEach(function (el) {
     el.textContent = cfg.phoneDisplay || "+351 962 669 288";
   });
-  const email = cfg.email || "pinecliffs@annabelcrofttennis.com";
+  const email = cfg.email || "ruben@annabelcrofttennis.com";
   const mailLink = document.getElementById("footerEmail");
   if (mailLink) {
     mailLink.textContent = email;

@@ -37,7 +37,7 @@
 
   function fillFooter() {
     const phone = cfg.phoneDisplay || "+351 962 669 288";
-    const email = cfg.email || "pinecliffs@annabelcrofttennis.com";
+    const email = cfg.email || "ruben@annabelcrofttennis.com";
     document.querySelectorAll("#footerPhone, .footerPhoneCopy").forEach(function (el) {
       el.textContent = phone;
     });
