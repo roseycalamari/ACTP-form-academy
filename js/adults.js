@@ -184,6 +184,7 @@
       secondChoice: secondSel.value,
       tennisLevel: radioVal("tennisLevel"),
       padelLevel: radioVal("padelLevel"),
+      referredBy: form.referredBy.value.trim(),
       notes: form.notes.value.trim(),
       confirmed: form.confirmed.checked,
       website: form.website.value
@@ -227,6 +228,7 @@
       data.padelLevel && data.sport !== "tennis"
         ? (lang === "en" ? "Padel level" : "Nível padel") + ": " + data.padelLevel
         : "",
+      data.referredBy ? (lang === "en" ? "Referred by / how they heard" : "Quem referiu / como souberam") + ": " + data.referredBy : "",
       data.notes ? (lang === "en" ? "Notes" : "Notas") + ": " + data.notes : ""
     ].filter(Boolean);
     return lines.join("\n");

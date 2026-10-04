@@ -25,6 +25,7 @@
       sport: F.radioVal(form, "sport"),
       weekendDays: F.checkedList(form, "weekendDays"),
       weekendWhen: F.radioVal(form, "weekendWhen"),
+      referredBy: form.referredBy.value.trim(),
       notes: form.notes.value.trim(),
       confirmed: form.confirmed.checked,
       website: form.website.value
@@ -60,6 +61,7 @@
       (en ? "Sport" : "Modalidade") + ": " + data.sport,
       (en ? "Days" : "Dias") + ": " + days,
       when ? (en ? "When" : "Quando") + ": " + when : "",
+      data.referredBy ? (en ? "Referred by / how they heard" : "Quem referiu / como souberam") + ": " + data.referredBy : "",
       data.notes ? (en ? "Notes" : "Notas") + ": " + data.notes : ""
     ].filter(Boolean).join("\n");
   }

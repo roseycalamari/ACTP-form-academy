@@ -26,6 +26,7 @@
       playSports: F.radioVal(form, "sport"),
       playPlan: "play",
       playsAlready: form.playsAlready.checked,
+      referredBy: form.referredBy.value.trim(),
       notes: form.notes.value.trim(),
       confirmed: form.confirmed.checked,
       website: form.website.value
@@ -52,6 +53,7 @@
       data.email ? "Email: " + data.email : "",
       (en ? "Sport" : "Modalidade") + ": " + data.sport,
       (en ? "Plan" : "Plano") + ": Play · €300",
+      data.referredBy ? (en ? "Referred by / how they heard" : "Quem referiu / como souberam") + ": " + data.referredBy : "",
       data.notes ? (en ? "Notes" : "Notas") + ": " + data.notes : ""
     ].filter(Boolean).join("\n");
   }

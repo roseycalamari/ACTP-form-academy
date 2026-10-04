@@ -457,6 +457,7 @@
       field("Nível ténis", labels[row.tennisLevel] || row.tennisLevel) +
       field("Nível padel", labels[row.padelLevel] || row.padelLevel) +
       field("2.º filho", [row.child2Name, row.child2Age, labels[row.child2Gender] || row.child2Gender, labels[row.child2Schedule] || row.child2Schedule].filter(Boolean).join(" · ")) +
+      field("Quem referiu", row.referredBy) +
       field("Notas", row.notes) +
       field("Idioma", row.language) +
       field("Ref", row.id)
@@ -474,6 +475,7 @@
       field("2.ª escolha", slotLabel(row.secondChoice)) +
       field("Nível ténis", adultLevelWord(row.tennisLevel)) +
       field("Nível padel", adultLevelWord(row.padelLevel)) +
+      field("Quem referiu", row.referredBy) +
       field("Notas", row.notes) +
       field("Idioma", row.language) +
       field("Ref", row.id)
@@ -486,6 +488,7 @@
       field("Modalidade", labels[row.sport] || row.sport) +
       field("Dias", weekendLabel(row)) +
       field("Quando", labels[row.weekendWhen] || row.weekendWhen) +
+      field("Quem referiu", row.referredBy) +
       field("Notas", row.notes) +
       field("Idioma", row.language) +
       field("Ref", row.id)
@@ -498,6 +501,7 @@
       field("Modalidade", labels[row.sport] || row.playSports || row.sport) +
       field("Plano", labels[row.playPlan] || row.playPlan) +
       field("Já joga", row.playsAlready ? "Sim" : "") +
+      field("Quem referiu", row.referredBy) +
       field("Notas", row.notes) +
       field("Idioma", row.language) +
       field("Ref", row.id)

@@ -87,6 +87,9 @@ window.ACTP_I18N = {
     child2Age: "Idade",
     child2Same: "Mesmos horários do 1.º",
     child2Different: "Horários diferentes (escreva nas notas)",
+    referralTitle: "Como souberam de nós? (opcional)",
+    referralLabel: "Quem referiu / como souberam",
+    referralPlaceholder: "Nome de quem indicou, ou como nos encontraram",
     notes: "Notas",
     notesPlaceholder: "Alguma informação extra que nos ajude a formar a turma…",
     confirmLabel:
@@ -299,6 +302,9 @@ window.ACTP_I18N = {
     child2Age: "Age",
     child2Same: "Same schedule as the 1st",
     child2Different: "Different times (please note them in the comments)",
+    referralTitle: "How did you hear about us? (optional)",
+    referralLabel: "Who referred you / how you found us",
+    referralPlaceholder: "Name of who referred you, or how you found us",
     notes: "Notes",
     notesPlaceholder: "Anything else that helps us form the class…",
     confirmLabel:

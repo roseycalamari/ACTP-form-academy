@@ -199,6 +199,7 @@
       child2Age: form.child2Age.value.trim(),
       child2Gender: radioVal("child2Gender"),
       child2Schedule: radioVal("child2Schedule"),
+      referredBy: form.referredBy.value.trim(),
       notes: form.notes.value.trim(),
       confirmed: form.confirmed.checked,
       website: form.website.value
@@ -230,6 +231,7 @@
       (lang === "en" ? "Slots" : "Horários") + ": " + data.slots.map(slotLabel).join(", "),
       data.firstChoice ? (lang === "en" ? "1st choice" : "1.ª escolha") + ": " + slotLabel(data.firstChoice) : "",
       data.secondChoice ? (lang === "en" ? "2nd choice" : "2.ª escolha") + ": " + slotLabel(data.secondChoice) : "",
+      data.referredBy ? (lang === "en" ? "Referred by / how they heard" : "Quem referiu / como souberam") + ": " + data.referredBy : "",
       data.notes ? (lang === "en" ? "Notes" : "Notas") + ": " + data.notes : ""
     ].filter(Boolean);
     return lines.join("\n");

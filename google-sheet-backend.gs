@@ -17,7 +17,7 @@ function doPost(e) {
     sheet.appendRow([
       "id", "submittedAt", "language", "studentName", "age", "gender", "parentName", "phone",
       "email", "school", "sport", "timesPerWeek", "slots", "firstChoice", "secondChoice",
-      "tennisLevel", "padelLevel", "child2Name", "child2Age", "child2Gender", "child2Schedule", "notes"
+      "tennisLevel", "padelLevel", "child2Name", "child2Age", "child2Gender", "child2Schedule", "referredBy", "notes"
     ]);
   }
   const id = "actp-" + Date.now();
@@ -43,6 +43,7 @@ function doPost(e) {
     data.child2Age || "",
     data.child2Gender || "",
     data.child2Schedule || "",
+    data.referredBy || "",
     data.notes || ""
   ]);
   return ContentService
