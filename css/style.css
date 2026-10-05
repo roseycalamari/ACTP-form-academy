@@ -487,16 +487,19 @@ table.grid td.cell { height: 48px; }
 
 .note strong { font-weight: 800; }
 
+.info-facts,
 .play-facts {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
   margin: 4px 0 12px;
 }
+.info-facts > div,
 .play-facts > div {
   border: 1.5px solid #111;
   padding: 12px 12px 10px;
 }
+.info-facts b,
 .play-facts b {
   display: block;
   font-size: 14.5px;
@@ -504,6 +507,7 @@ table.grid td.cell { height: 48px; }
   line-height: 1.2;
   margin-bottom: 4px;
 }
+.info-facts span,
 .play-facts span {
   display: block;
   font-size: 13px;
@@ -1039,6 +1043,7 @@ body.done .success { display: block; }
   .when { font-size: 18px; }
   .lead, .banner p, .hint, .note { font-size: 14px; }
   .fields { grid-template-columns: 1fr; gap: 14px; }
+  .info-facts,
   .play-facts { grid-template-columns: 1fr; }
   .field input,
   .field select,
