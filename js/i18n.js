@@ -21,7 +21,7 @@ window.ACTP_I18N = {
     whenTitle: "Aulas de segunda a sexta",
     whenSub: "Das 16h30 às 21h30 · a última sessão é das 20h30 às 21h30",
     kidsIncludesTitle: "O que incluem as aulas das crianças",
-    kidsFactPrice: "€16 por aula de 1 hora",
+    kidsFactPrice: "€15 por aula de 1 hora",
     kidsFactPriceSub: "Preçário local · 1, 2 ou 3 vezes por semana",
     kidsFactStart: "9 de novembro",
     kidsFactStartSub: "Primeira aula · segunda a sexta, das 16h30 às 21h30",
@@ -112,7 +112,7 @@ window.ACTP_I18N = {
     submit: "Enviar disponibilidade",
     sending: "A enviar…",
     priceNote:
-      "Preçário local (indicação): crianças €16 / hora · turmas a partir de 4 alunos (6 na bola yellow até aos 12; 4 a partir dos 13). Pack e confirmação quando a turma fechar.",
+      "Preçário local (indicação): crianças €15 / hora · turmas a partir de 4 alunos (6 na bola yellow até aos 12; 4 a partir dos 13). Pack e confirmação quando a turma fechar.",
     contactFooter: "Mais informação contacte",
     errRequired: "Por favor preencha os campos obrigatórios.",
     errGender: "Indique se é menina ou menino.",
@@ -140,7 +140,7 @@ window.ACTP_I18N = {
     adultWhenTitle: "Aulas de segunda a sexta · só a partir das 18h30",
     adultWhenSub: "Das 18h30 às 21h30 · a última sessão é das 20h30 às 21h30",
     adultIncludesTitle: "O que incluem as aulas de adultos",
-    adultFactPrice: "€22 por aula de 1h30",
+    adultFactPrice: "€25 por aula de 1h30",
     adultFactPriceSub: "Preçário local · 1, 2 ou 3 vezes por semana",
     adultFactHours: "A partir das 18h30",
     adultFactHoursSub: "Segunda a sexta · até às 21h30",
@@ -177,7 +177,7 @@ window.ACTP_I18N = {
     adultConfirmLabel:
       "Confirmo que estes dados estão corretos. Percebo que isto não é um compromisso — só serve para informação, e só pago se o lugar for confirmado.",
     adultPriceNote:
-      "Preçário local (indicação): adultos €22 / aula de 1h30 · turmas a partir de 4. Paga-se bloco a bloco, quando a turma fechar.",
+      "Preçário local (indicação): adultos €25 / aula de 1h30 · turmas a partir de 4. Paga-se bloco a bloco, quando a turma fechar.",
     adultSuccessTitle: "Obrigado — sem compromisso.",
     adultSuccessBody:
       "Já temos a sua disponibilidade. Vamos formar turmas a partir destas respostas e contactamos por WhatsApp quando houver lugar. Não precisa de pagar nada agora.",
@@ -281,7 +281,7 @@ window.ACTP_I18N = {
     whenTitle: "Classes Monday through Friday",
     whenSub: "From 4:30 p.m. to 9:30 p.m. · the last session is from 8:30 p.m. to 9:30 p.m.",
     kidsIncludesTitle: "What the children’s classes include",
-    kidsFactPrice: "€16 per 1-hour lesson",
+    kidsFactPrice: "€15 per 1-hour lesson",
     kidsFactPriceSub: "Local price · 1, 2 or 3 times a week",
     kidsFactStart: "9 November",
     kidsFactStartSub: "First lesson · Monday to Friday, 16:30 to 21:30",
@@ -372,7 +372,7 @@ window.ACTP_I18N = {
     submit: "Send availability",
     sending: "Sending…",
     priceNote:
-      "Local price list (for reference): children €16/hour · classes start with 4 students (6 for yellow ball up to age 12; 4 from 13). Confirmation once the class closes.",
+      "Local price list (for reference): children €15/hour · classes start with 4 students (6 for yellow ball up to age 12; 4 from 13). Confirmation once the class closes.",
     contactFooter: "For more information, please contact us",
     errRequired: "Please fill in the required fields.",
     errGender: "Please say if it is a girl or a boy.",
@@ -400,7 +400,7 @@ window.ACTP_I18N = {
     adultWhenTitle: "Monday to Friday · from 18:30 only",
     adultWhenSub: "From 18:30 to 21:30 · the last session is 20:30 to 21:30",
     adultIncludesTitle: "What the adult classes include",
-    adultFactPrice: "€22 per 1h30 lesson",
+    adultFactPrice: "€25 per 1h30 lesson",
     adultFactPriceSub: "Local price · 1, 2 or 3 times a week",
     adultFactHours: "From 18:30",
     adultFactHoursSub: "Monday to Friday · until 21:30",
@@ -437,7 +437,7 @@ window.ACTP_I18N = {
     adultConfirmLabel:
       "I confirm this information is correct. I understand this is not a commitment — it is only for information, and I only pay if a spot is confirmed.",
     adultPriceNote:
-      "Local price list (for reference): adults €22 / 1h30 lesson · classes start with 4. You pay block by block, once the class closes.",
+      "Local price list (for reference): adults €25 / 1h30 lesson · classes start with 4. You pay block by block, once the class closes.",
     adultSuccessTitle: "Thank you — no commitment.",
     adultSuccessBody:
       "We have your availability. We will form classes from these answers and contact you on WhatsApp when there is a spot. You do not need to pay anything now.",
