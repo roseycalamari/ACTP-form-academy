@@ -14,7 +14,7 @@ window.ACTP_I18N = {
     brandSub: "Tennis & Padel",
     noCommitKicker: "Sem compromisso · apenas informação",
     noCommit:
-      "Isto não é uma inscrição definitiva nem um pagamento. Basta preencher para nos dar informação — assim conseguimos formar turmas. Só confirmamos o lugar (e só se paga) quando a turma fechar: 4 alunos, ou 6 na bola yellow até aos 12 anos.",
+      "Isto não é uma inscrição definitiva nem um pagamento. Basta preencher para nos dar informação — assim conseguimos formar turmas. Só confirmamos o lugar (e só se paga) quando a turma chegar a 4 alunos. O máximo é 6, em qualquer aula.",
     lead:
       "Aulas locais de ténis e padel no Pine Cliffs. Diga-nos quando pode trazer o(a) seu/sua filho(a) — construímos as turmas a partir da vossa disponibilidade.",
     season: "Época 2026/27 · Novembro a Março/Abril · Pine Cliffs Resort, Albufeira.",
@@ -27,8 +27,8 @@ window.ACTP_I18N = {
     kidsFactStartSub: "Primeira aula · segunda a sexta, das 16h30 às 21h30",
     kidsFactBlocks: "4 blocos · novembro a maio",
     kidsFactBlocksSub: "Paga-se bloco a bloco · sem aulas nas férias escolares",
-    kidsFactGroups: "Grupos pequenos",
-    kidsFactGroupsSub: "Abre com 4 alunos · máximo 6 (bola yellow a partir dos 13: 4)",
+    kidsFactGroups: "4 a 6 alunos",
+    kidsFactGroupsSub: "Mínimo 4 · máximo 6 · em qualquer aula",
     kidsFactSports: "Ténis e padel",
     kidsFactSportsSub: "O mesmo aluno pode fazer os dois, em horas diferentes",
     kidsFactPay: "Só se paga com turma fechada",
@@ -74,7 +74,7 @@ window.ACTP_I18N = {
     selectedCount: "{n} horário(s) possível(is)",
     howTitle: "Como funciona:",
     howBody:
-      "Abrimos estes horários a todas as famílias. Quando uma turma chega ao mínimo, fechamos esse dia e hora e confirmamos por WhatsApp. O mínimo é 4 alunos — excepto bola yellow até aos 12 anos, que fecha com 6. A partir dos 13, yellow fecha com 4. Só paga quando o lugar estiver confirmado.",
+      "Abrimos estes horários a todas as famílias. Quando uma turma chega a 4 alunos, fechamos esse dia e hora e confirmamos por WhatsApp. O máximo é 6, em qualquer tipo de aula. Só paga quando o lugar estiver confirmado.",
     prefTitle: "Preferência de horário (opcional)",
     prefHint: "Se tiver um 1.º e 2.º preferidos dentro das caixas que marcou:",
     firstChoice: "1.ª escolha · dia + hora",
@@ -112,7 +112,7 @@ window.ACTP_I18N = {
     submit: "Enviar disponibilidade",
     sending: "A enviar…",
     priceNote:
-      "Preçário local (indicação): crianças €15 / hora · turmas a partir de 4 alunos (6 na bola yellow até aos 12; 4 a partir dos 13). Pack e confirmação quando a turma fechar.",
+      "Preçário local (indicação): crianças €15 / hora · turmas de 4 a 6 alunos, em qualquer aula. Pack e confirmação quando a turma fechar.",
     contactFooter: "Mais informação contacte",
     errRequired: "Por favor preencha os campos obrigatórios.",
     errGender: "Indique se é menina ou menino.",
@@ -134,7 +134,7 @@ window.ACTP_I18N = {
     titleAdult: "ACTP · Disponibilidade de aulas · Adultos",
     adultNoCommitKicker: "Sem compromisso · apenas informação",
     adultNoCommit:
-      "Isto não é uma inscrição definitiva nem um pagamento. Basta preencher para nos dar informação — assim conseguimos formar turmas de adultos. Só confirmamos o lugar (e só se paga) quando a turma fechar, com 4 alunos.",
+      "Isto não é uma inscrição definitiva nem um pagamento. Basta preencher para nos dar informação — assim conseguimos formar turmas de adultos. Só confirmamos o lugar (e só se paga) quando a turma chegar a 4 alunos. O máximo é 6.",
     adultLead:
       "Aulas de ténis e padel para adultos no Pine Cliffs. Diga-nos quando pode vir — as turmas formam-se a partir da vossa disponibilidade.",
     adultWhenTitle: "Aulas de segunda a sexta · só a partir das 18h30",
@@ -146,8 +146,8 @@ window.ACTP_I18N = {
     adultFactHoursSub: "Segunda a sexta · até às 21h30",
     adultFactBlocks: "4 blocos · novembro a maio",
     adultFactBlocksSub: "Paga-se bloco a bloco · sem aulas nas férias escolares",
-    adultFactGroups: "Grupos de 4",
-    adultFactGroupsSub: "Senhoras, homens ou mistos · por nível",
+    adultFactGroups: "4 a 6 alunos",
+    adultFactGroupsSub: "Mínimo 4 · máximo 6 · senhoras, homens ou mistos · por nível",
     adultFactSports: "Ténis e padel",
     adultFactSportsSub: "Terra batida e piso rápido · 8 campos com luz",
     adultFactPay: "Só se paga com turma fechada",
@@ -172,12 +172,12 @@ window.ACTP_I18N = {
     adultGridHint:
       "Marque todas as combinações dia + hora possíveis a partir das 18h30 — não só a preferida. Assim formamos turmas.",
     adultHowBody:
-      "Abrimos estes horários a todos os adultos. Quando uma turma chega a 4 alunos, fechamos esse dia e hora e confirmamos por WhatsApp. Só paga quando o lugar estiver confirmado.",
+      "Abrimos estes horários a todos os adultos. Quando uma turma chega a 4 alunos, fechamos esse dia e hora e confirmamos por WhatsApp. O máximo é 6, como em qualquer aula. Só paga quando o lugar estiver confirmado.",
     adultNotesPlaceholder: "Alguma informação extra que nos ajude a formar a turma…",
     adultConfirmLabel:
       "Confirmo que estes dados estão corretos. Percebo que isto não é um compromisso — só serve para informação, e só pago se o lugar for confirmado.",
     adultPriceNote:
-      "Preçário local (indicação): adultos €25 / aula de 1h30 · turmas a partir de 4. Paga-se bloco a bloco, quando a turma fechar.",
+      "Preçário local (indicação): adultos €25 / aula de 1h30 · turmas de 4 a 6. Paga-se bloco a bloco, quando a turma fechar.",
     adultSuccessTitle: "Obrigado — sem compromisso.",
     adultSuccessBody:
       "Já temos a sua disponibilidade. Vamos formar turmas a partir destas respostas e contactamos por WhatsApp quando houver lugar. Não precisa de pagar nada agora.",
@@ -274,7 +274,7 @@ window.ACTP_I18N = {
     brandSub: "Tennis & Padel",
     noCommitKicker: "No commitment · information only",
     noCommit:
-      "This is not a final enrolment and there is no payment yet. Just fill it in so we can gather information and form classes. We only confirm your spot (and you only pay) once a class is closed: 4 students, or 6 for yellow ball up to age 12.",
+      "This is not a final enrolment and there is no payment yet. Just fill it in so we can gather information and form classes. We only confirm your spot (and you only pay) once a class reaches 4 students. The maximum is 6, in any lesson.",
     lead:
       "Tennis and padel lessons at Pine Cliffs. Let us know when you can bring your child — we organise the classes based on your availability.",
     season: "2026–27 season · November through March/April · Pine Cliffs Resort, Albufeira.",
@@ -287,8 +287,8 @@ window.ACTP_I18N = {
     kidsFactStartSub: "First lesson · Monday to Friday, 16:30 to 21:30",
     kidsFactBlocks: "4 blocks · November to May",
     kidsFactBlocksSub: "You pay block by block · no lessons in school holidays",
-    kidsFactGroups: "Small groups",
-    kidsFactGroupsSub: "Opens with 4 players · max 6 (yellow ball from 13: 4)",
+    kidsFactGroups: "4 to 6 players",
+    kidsFactGroupsSub: "Minimum 4 · maximum 6 · in any lesson",
     kidsFactSports: "Tennis and padel",
     kidsFactSportsSub: "The same child can do both, at different times",
     kidsFactPay: "You only pay once the class is full",
@@ -334,7 +334,7 @@ window.ACTP_I18N = {
     selectedCount: "{n} possible time slot(s)",
     howTitle: "How it works:",
     howBody:
-      "We open these time slots to all families. When a class reaches the minimum, we close that day and time and confirm it via WhatsApp. The minimum is 4 students — except yellow ball up to age 12, which closes with 6. From 13, yellow closes with 4. You only pay once your spot is confirmed.",
+      "We open these time slots to all families. When a class reaches 4 students, we close that day and time and confirm it via WhatsApp. The maximum is 6, in any type of lesson. You only pay once your spot is confirmed.",
     prefTitle: "Preferred time (optional)",
     prefHint: "If you have a first and second choice among the boxes you checked:",
     firstChoice: "1st choice · day + time",
@@ -372,7 +372,7 @@ window.ACTP_I18N = {
     submit: "Send availability",
     sending: "Sending…",
     priceNote:
-      "Local price list (for reference): children €15/hour · classes start with 4 students (6 for yellow ball up to age 12; 4 from 13). Confirmation once the class closes.",
+      "Local price list (for reference): children €15/hour · classes of 4 to 6 students, in any lesson. Confirmation once the class closes.",
     contactFooter: "For more information, please contact us",
     errRequired: "Please fill in the required fields.",
     errGender: "Please say if it is a girl or a boy.",
@@ -394,7 +394,7 @@ window.ACTP_I18N = {
     titleAdult: "ACTP · Lesson availability · Adults",
     adultNoCommitKicker: "No commitment · information only",
     adultNoCommit:
-      "This is not a final enrolment and not a payment. Fill it in so we have information — that is how we form adult classes. We only confirm the spot (and payment only happens) when the class closes, with 4 players.",
+      "This is not a final enrolment and not a payment. Fill it in so we have information — that is how we form adult classes. We only confirm the spot (and payment only happens) when the class reaches 4 players. The maximum is 6.",
     adultLead:
       "Adult tennis and padel lessons at Pine Cliffs. Tell us when you can come — we build classes from your availability.",
     adultWhenTitle: "Monday to Friday · from 18:30 only",
@@ -406,8 +406,8 @@ window.ACTP_I18N = {
     adultFactHoursSub: "Monday to Friday · until 21:30",
     adultFactBlocks: "4 blocks · November to May",
     adultFactBlocksSub: "You pay block by block · no lessons in school holidays",
-    adultFactGroups: "Groups of 4",
-    adultFactGroupsSub: "Women, men or mixed · by level",
+    adultFactGroups: "4 to 6 players",
+    adultFactGroupsSub: "Minimum 4 · maximum 6 · women, men or mixed · by level",
     adultFactSports: "Tennis and padel",
     adultFactSportsSub: "Clay and hard courts · 8 floodlit courts",
     adultFactPay: "You only pay once the class is full",
@@ -432,12 +432,12 @@ window.ACTP_I18N = {
     adultGridHint:
       "Tick every possible day + time from 18:30 — not just the preferred one. That is how we form classes.",
     adultHowBody:
-      "We open these time slots to all adults. When a class reaches 4 players, we close that day and time and confirm it via WhatsApp. You only pay once your spot is confirmed.",
+      "We open these time slots to all adults. When a class reaches 4 players, we close that day and time and confirm it via WhatsApp. The maximum is 6, as in every lesson. You only pay once your spot is confirmed.",
     adultNotesPlaceholder: "Anything else that helps us form the class…",
     adultConfirmLabel:
       "I confirm this information is correct. I understand this is not a commitment — it is only for information, and I only pay if a spot is confirmed.",
     adultPriceNote:
-      "Local price list (for reference): adults €25 / 1h30 lesson · classes start with 4. You pay block by block, once the class closes.",
+      "Local price list (for reference): adults €25 / 1h30 lesson · classes of 4 to 6. You pay block by block, once the class closes.",
     adultSuccessTitle: "Thank you — no commitment.",
     adultSuccessBody:
       "We have your availability. We will form classes from these answers and contact you on WhatsApp when there is a spot. You do not need to pay anything now.",

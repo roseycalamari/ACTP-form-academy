@@ -947,7 +947,7 @@ body.done .success { display: block; }
   margin-top: 2px;
 }
 .turma-line.ready .turma-when span { color: #ccc; }
-.turma-pips { display: flex; flex-wrap: wrap; gap: 5px; max-width: 120px; justify-content: flex-end; }
+.turma-pips { display: flex; flex-wrap: wrap; gap: 5px; max-width: 140px; justify-content: flex-end; }
 .pip {
   width: 14px;
   height: 14px;

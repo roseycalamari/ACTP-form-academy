@@ -67,8 +67,8 @@
     return parseAge(row.age) >= 13 ? "yellow13" : "yellow12";
   }
 
-  function classSize(group) {
-    return group === "yellow12" ? 6 : 4;
+  function classSize() {
+    return 4;
   }
 
   function heatBallClass(group) {
@@ -220,7 +220,8 @@
     });
 
     groups.forEach(function (group) {
-      const size = classSize(group.ball);
+      const size = classSize();
+      const max = 6;
       const box = document.createElement("section");
       box.className = "turma-group " + heatBallClass(group.ball);
       const readyCount = group.rows.filter(function (row) { return row.count >= size; }).length;
@@ -230,7 +231,7 @@
           "<div><strong>" + escapeHtml(labels[group.ball] || group.ball) + "</strong>" +
           "<span>" + group.rows.length + (group.rows.length === 1 ? " horário" : " horários") +
           (readyCount ? " · " + readyCount + " pronto" + (readyCount > 1 ? "s" : "") : "") +
-          " · fecha com " + size +
+          " · mín. " + size + " · máx. " + max +
           "</span></div>" +
         "</header>";
       group.rows.forEach(function (row) {
@@ -241,14 +242,14 @@
         const isReady = row.count >= size;
         line.className = "turma-line" + (isReady ? " ready" : "");
         const pips = [];
-        for (let i = 0; i < size; i += 1) {
-          pips.push('<i class="pip' + (i < Math.min(row.count, size) ? " on" : "") + '"></i>');
+        for (let i = 0; i < max; i += 1) {
+          pips.push('<i class="pip' + (i < Math.min(row.count, max) ? " on" : "") + '"></i>');
         }
         line.innerHTML =
           '<div class="turma-when"><b>' + escapeHtml(DAY_LONG[parts[0]] || parts[0]) + "</b>" +
           "<span>" + escapeHtml(time ? time.label : parts[1]) + "</span></div>" +
           '<div class="turma-pips" aria-hidden="true">' + pips.join("") + "</div>" +
-          '<div class="turma-count"><b>' + row.count + "</b><span>/ " + size + "</span></div>" +
+          '<div class="turma-count"><b>' + row.count + "</b><span>/ " + max + "</span></div>" +
           (names.length ? '<p class="turma-names">' + escapeHtml(names.join(" · ")) + "</p>" : "") +
           (isReady ? '<span class="turma-ready">Pronto a fechar</span>' : "");
         box.appendChild(line);
@@ -384,6 +385,7 @@
 
     groups.forEach(function (group) {
       const size = 4;
+      const max = 6;
       const box = document.createElement("section");
       const genderClass = group.ball.indexOf("-male-") >= 0 ? "male" : "female";
       box.className = "turma-group " + genderClass;
@@ -393,7 +395,7 @@
           "<div><strong>" + escapeHtml(adultGroupLabel(group.ball)) + "</strong>" +
           "<span>" + group.rows.length + (group.rows.length === 1 ? " horário" : " horários") +
           (readyCount ? " · " + readyCount + " pronto" + (readyCount > 1 ? "s" : "") : "") +
-          " · fecha com " + size +
+          " · mín. " + size + " · máx. " + max +
           "</span></div>" +
         "</header>";
       group.rows.forEach(function (row) {
@@ -404,14 +406,14 @@
         const isReady = row.count >= size;
         line.className = "turma-line" + (isReady ? " ready" : "");
         const pips = [];
-        for (let i = 0; i < size; i += 1) {
-          pips.push('<i class="pip' + (i < Math.min(row.count, size) ? " on" : "") + '"></i>');
+        for (let i = 0; i < max; i += 1) {
+          pips.push('<i class="pip' + (i < Math.min(row.count, max) ? " on" : "") + '"></i>');
         }
         line.innerHTML =
           '<div class="turma-when"><b>' + escapeHtml(DAY_LONG[parts[0]] || parts[0]) + "</b>" +
           "<span>" + escapeHtml(time ? time.label : parts[1]) + "</span></div>" +
           '<div class="turma-pips" aria-hidden="true">' + pips.join("") + "</div>" +
-          '<div class="turma-count"><b>' + row.count + "</b><span>/ " + size + "</span></div>" +
+          '<div class="turma-count"><b>' + row.count + "</b><span>/ " + max + "</span></div>" +
           (names.length ? '<p class="turma-names">' + escapeHtml(names.join(" · ")) + "</p>" : "") +
           (isReady ? '<span class="turma-ready">Pronto a fechar</span>' : "");
         box.appendChild(line);
